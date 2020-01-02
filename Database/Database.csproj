@@ -83,10 +83,8 @@
     <Compile Include="Commands\CountCommand.cs" />
     <Compile Include="Commands\CustomCommand.cs" />
     <Compile Include="Commands\DbCommand.cs" />
-    <Compile Include="Commands\DbParameter.cs" />
     <Compile Include="Commands\DbStatus.cs" />
     <Compile Include="Commands\IConnector.cs" />
-    <Compile Include="Commands\InputDbParameter.cs" />
     <Compile Include="Commands\InsertCommand.cs" />
     <Compile Include="Commands\InsertIntoConnectionTableCommand.cs" />
     <Compile Include="Commands\SelectAllCommand.cs" />
