@@ -254,9 +254,6 @@
   <ItemGroup>
     <Resource Include="Images\ButtonTheme.JPG" />
     <Resource Include="Images\GoBack.png" />
-    <Resource Include="Images\MainThemeDNA.jpg" />
-    <Resource Include="Images\ThemeDNA.jpg" />
-    <Resource Include="Images\VirtualAssistant.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
