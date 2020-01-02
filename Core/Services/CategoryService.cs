@@ -1,4 +1,5 @@
-﻿using Core.Services.Interfaces;
+﻿using Core.Common;
+using Core.Services.Interfaces;
 using Database.Commands;
 using Database.Entities;
 using System;
@@ -11,44 +12,73 @@ namespace Core.Services
 {
     public class CategoryService : ICategoryService
     {
-        public Task<DbStatus> Add(Category entity)
+        public async Task<DbStatus> Add(Category entity)
         {
-            throw new NotImplementedException();
+            // Category with same name must not exist in database
+            string[] uniqueAttributes = new string[] { "Name" };
+            Category existingCategory = await GetByUniqueIdentifiers(uniqueAttributes, entity);
+            if (existingCategory != null)
+                return DbStatus.EXISTS;
+            // Execute insert command in table Category
+            DbCommand<Category> insertCommand = new InsertCommand<Category>();
+            DbStatus statusOfExecution = await ServiceHelper<Category>.ExecuteCRUDCommand(insertCommand, entity);
+            return statusOfExecution;
         }
 
-        public Task<DbStatus> Delete(Category entity)
+        public async Task<DbStatus> Delete(Category entity)
         {
-            throw new NotImplementedException();
+            // Category with specified id doesn't exists
+            Category existingCategory = await GetByPrimaryKey(entity);
+            if (existingCategory == null)
+                return DbStatus.NOT_FOUND;
+
+            DbCommand<Category> deleteCommand = new CompletelyDeleteCommand<Category>();
+            DbStatus statusOfExecution = await ServiceHelper<Category>.ExecuteCRUDCommand(deleteCommand, entity);
+            return statusOfExecution;
         }
 
-        public Task<IList<Category>> GetAll()
+        public async Task<IList<Category>> GetAll()
         {
-            throw new NotImplementedException();
+            return await ServiceHelper<Category>.ExecuteSelectCommand(new SelectAllCommand<Category>());
         }
 
-        public Task<Category> GetByPrimaryKey(Category entity)
+        public async Task<Category> GetByPrimaryKey(Category entity)
         {
-            throw new NotImplementedException();
+            var list = await ServiceHelper<Category>.ExecuteSelectCommand(new SelectWithPrimaryKeyCommand<Category>(), entity);
+            // If no object is found, return null
+            return list.Count != 0 ? list[0] : null;
         }
 
-        public Task<Category> GetByUniqueIdentifiers(string[] propertyNames, Category entity)
+        public async Task<Category> GetByUniqueIdentifiers(string[] propertyNames, Category entity)
         {
-            throw new NotImplementedException();
+            var list = await ServiceHelper<Category>.ExecuteSelectCommand(new SelectWithAttributeValuesCommand<Category>(propertyNames), entity);
+            return list.Count != 0 ? list[0] : null;
         }
 
-        public Task<IList<Category>> GetRange(int begin, int count)
+        public async Task<IList<Category>> GetRange(int begin, int count)
         {
-            throw new NotImplementedException();
+            return await ServiceHelper<Category>.ExecuteSelectCommand(new SelectWithRangeCommand<Category>(begin, count, "Name"));
         }
 
-        public Task<int> GetTotalNumberOfItems()
+        public async Task<int> GetTotalNumberOfItems()
         {
-            throw new NotImplementedException();
+            return Convert.ToInt32(await ServiceHelper<Category>.ExecuteScalarCommand(new CountCommand<Category>()));
         }
 
-        public Task<DbStatus> Update(Category entity)
+        public async Task<DbStatus> Update(Category entity)
         {
-            throw new NotImplementedException();
+            // Category with specified id doesn't exists
+            Category existingCategory = await GetByPrimaryKey(entity);
+            if (existingCategory == null)
+                return DbStatus.NOT_FOUND;
+
+            Category categoryWithSameName = await GetByUniqueIdentifiers(new string[] { "Name" }, entity);
+            if (categoryWithSameName != null && existingCategory.Name != entity.Name)
+                return DbStatus.EXISTS;
+
+            DbCommand<Category> updateCommand = new UpdateCommand<Category>();
+            DbStatus status = await ServiceHelper<Category>.ExecuteCRUDCommand(updateCommand, entity);
+            return status;
         }
     }
 }

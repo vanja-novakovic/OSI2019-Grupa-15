@@ -72,7 +72,7 @@ namespace Core.Services
                 return DbStatus.NOT_FOUND;
 
             Account accountWithSameUsername = await GetByUniqueIdentifiers(new string[] { "Username" }, entity);
-            if (accountWithSameUsername != null)
+            if (accountWithSameUsername != null && existingAccount.Username != entity.Username)
                 return DbStatus.EXISTS;
 
             DbCommand<Account> updateCommand = new UpdateCommand<Account>();

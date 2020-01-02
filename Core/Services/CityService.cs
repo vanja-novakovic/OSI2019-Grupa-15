@@ -1,4 +1,5 @@
-﻿using Core.Services.Interfaces;
+﻿using Core.Common;
+using Core.Services.Interfaces;
 using Database.Commands;
 using Database.Entities;
 using System;
@@ -11,44 +12,81 @@ namespace Core.Services
 {
     public class CityService : ICityService
     {
-        public Task<DbStatus> Add(City entity)
+        public async Task<DbStatus> Add(City entity)
         {
-            throw new NotImplementedException();
+            // Unique attributes
+            string[] uniqueAttributes = new string[] { "Name" };
+
+            // Check if already exists
+            City existingCity = await GetByUniqueIdentifiers(uniqueAttributes, entity);
+            if (existingCity != null)
+                return DbStatus.EXISTS;
+
+            // Create command for inserting this entity in database
+            DbCommand<City> insertCommand = new InsertCommand<City>();
+            DbStatus addingStatus = await ServiceHelper<City>.ExecuteCRUDCommand(insertCommand, entity);
+            return addingStatus;
         }
 
-        public Task<DbStatus> Delete(City entity)
+        public async Task<DbStatus> Delete(City entity)
         {
-            throw new NotImplementedException();
+            // Check if exists
+            City city = await GetByPrimaryKey(entity);
+            if (city == null)
+                return DbStatus.NOT_FOUND;
+
+            // Delete entity with command
+            DbCommand<City> deleteCommand = new CompletelyDeleteCommand<City>();
+            DbStatus deleteStatus = await ServiceHelper<City>.ExecuteCRUDCommand(deleteCommand, entity);
+            return deleteStatus;
         }
 
-        public Task<IList<City>> GetAll()
+        public async Task<IList<City>> GetAll()
         {
-            throw new NotImplementedException();
+            DbCommand<City> selectAllCommand = new SelectAllCommand<City>();
+            return await ServiceHelper<City>.ExecuteSelectCommand(selectAllCommand);
         }
 
-        public Task<City> GetByPrimaryKey(City entity)
+        public async Task<City> GetByPrimaryKey(City entity)
         {
-            throw new NotImplementedException();
+            DbCommand<City> selectWithPrimaryKeyCommand = new SelectWithPrimaryKeyCommand<City>();
+            List<City> cities = await ServiceHelper<City>.ExecuteSelectCommand(selectWithPrimaryKeyCommand, entity);
+            return cities.Count == 0 ? null : cities[0];
         }
 
-        public Task<City> GetByUniqueIdentifiers(string[] propertyNames, City entity)
+        public async Task<City> GetByUniqueIdentifiers(string[] propertyNames, City entity)
         {
-            throw new NotImplementedException();
+            DbCommand<City> selectWithUniqueAttributes = new SelectWithAttributeValuesCommand<City>(propertyNames);
+            List<City> cities = await ServiceHelper<City>.ExecuteSelectCommand(selectWithUniqueAttributes, entity);
+            return cities.Count == 0 ? null : cities[0];
         }
 
-        public Task<IList<City>> GetRange(int begin, int count)
+        public async Task<IList<City>> GetRange(int begin, int count)
         {
-            throw new NotImplementedException();
+            return await ServiceHelper<City>.ExecuteSelectCommand(new SelectWithRangeCommand<City>(begin, count, "Name"));
         }
 
-        public Task<int> GetTotalNumberOfItems()
+        public async Task<int> GetTotalNumberOfItems()
         {
-            throw new NotImplementedException();
+            return Convert.ToInt32(await ServiceHelper<City>.ExecuteScalarCommand(new CountCommand<City>()));
         }
 
-        public Task<DbStatus> Update(City entity)
+        public async Task<DbStatus> Update(City entity)
         {
-            throw new NotImplementedException();
+            // Check if exists
+            City existingCity = await GetByPrimaryKey(entity);
+            if (existingCity == null)
+                return DbStatus.NOT_FOUND;
+
+            // Check if it violates unique constraint
+            City cityWithSameName = await GetByUniqueIdentifiers(new string[] { "Name" }, entity);
+            if (cityWithSameName != null && existingCity.Name != entity.Name)
+                return DbStatus.EXISTS;
+
+            // Update entity
+            DbCommand<City> updateCommand = new UpdateCommand<City>();
+            DbStatus updateStatus = await ServiceHelper<City>.ExecuteCRUDCommand(updateCommand, entity);
+            return updateStatus;
         }
     }
 }
