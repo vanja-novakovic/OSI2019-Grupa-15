@@ -17,9 +17,9 @@ namespace Eve
     /// <summary>
     /// Interaction logic for AfterLoginForm.xaml
     /// </summary>
-    public partial class AfterLoginForm : Window
+    public partial class WithAccount : Window
     {
-        public AfterLoginForm()
+        public WithAccount()
         {
             InitializeComponent();
         }
