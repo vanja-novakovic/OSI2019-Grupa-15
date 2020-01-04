@@ -22,7 +22,12 @@ namespace Eve.DataGridControls
             DataGridControlElement.DataGrid = DataGrid;
             DataGridControlElement.PageInfo = PageInfo;
             InitializeButtons();
-            DataGridControlElement.Show();
+            DataGridShow();
+        }
+
+        private async void DataGridShow()
+        {
+            await DataGridControlElement.Show();
         }
 
         private void InitializeButtons()
