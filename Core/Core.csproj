@@ -59,6 +59,8 @@
     <Compile Include="Services\Interfaces\ICityService.cs" />
     <Compile Include="Services\Interfaces\ICrudServiceTemplate.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
+    <Compile Include="Services\Interfaces\IQuizService.cs" />
+    <Compile Include="Services\QuizService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

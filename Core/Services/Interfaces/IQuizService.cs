@@ -1,0 +1,17 @@
+﻿using Database.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Core.Services.Interfaces
+{
+    public interface IQuizService
+    {
+        Task<List<Question>> GetRandomQuestions(int num);
+
+        Task<List<Answer>> GetAnswers(int idQuestion);
+
+    }
+}
