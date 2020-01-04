@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eve.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,7 @@ namespace Eve
         public MainWindow()
         {
             InitializeComponent();
-            Window window = new Accounts.MainWindow();
-            this.Close();
-            window.Show();
+            WindowHelper.ShowWindow(this, new LoginWindow());
         }
     }
 }

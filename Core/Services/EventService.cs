@@ -1,4 +1,5 @@
-﻿using Core.Services.Interfaces;
+﻿using Core.Common;
+using Core.Services.Interfaces;
 using Database.Commands;
 using Database.Entities;
 using System;
@@ -11,44 +12,71 @@ namespace Core.Services
 {
     public class EventService : IEventService
     {
-        public Task<DbStatus> Add(Event entity)
+        public async Task<DbStatus> Add(Event entity)
         {
-            throw new NotImplementedException();
+            string[] uniqueAtributes = new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" };
+            Event existingEvent = await GetByUniqueIdentifiers(uniqueAtributes, entity);
+            if (existingEvent != null)
+                return DbStatus.EXISTS;
+
+            DbCommand<Event> insertCommand = new InsertCommand<Event>();
+            DbStatus statusOfExecution = await ServiceHelper<Event>.ExecuteCRUDCommand(insertCommand, entity);
+            return statusOfExecution;
         }
 
-        public Task<DbStatus> Delete(Event entity)
+        public async Task<DbStatus> Delete(Event entity)
         {
-            throw new NotImplementedException();
+            Event existingEvent = await GetByPrimaryKey(entity);
+            if (existingEvent == null)
+                return DbStatus.NOT_FOUND;
+
+            DbCommand<Event> deleteCommand = new CompletelyDeleteCommand<Event>();
+            DbStatus statusOfExecution = await ServiceHelper<Event>.ExecuteCRUDCommand(deleteCommand, entity);
+            return statusOfExecution;
+
         }
 
-        public Task<IList<Event>> GetAll()
+        public async Task<IList<Event>> GetAll()
         {
-            throw new NotImplementedException();
+            return await ServiceHelper<Event>.ExecuteSelectCommand(new SelectAllCommand<Event>());
         }
 
-        public Task<Event> GetByPrimaryKey(Event entity)
+        public async Task<Event> GetByPrimaryKey(Event entity)
         {
-            throw new NotImplementedException();
+            var list = await ServiceHelper<Event>.ExecuteSelectCommand(new SelectWithPrimaryKeyCommand<Event>(), entity);
+            return list.Count != 0 ? list[0] : null; 
+
         }
 
-        public Task<Event> GetByUniqueIdentifiers(string[] propertyNames, Event entity)
+        public async Task<Event> GetByUniqueIdentifiers(string[] propertyNames, Event entity)
         {
-            throw new NotImplementedException();
+            var list = await ServiceHelper<Event>.ExecuteSelectCommand(new SelectWithAttributeValuesCommand<Event>(propertyNames), entity);
+            return list.Count != 0 ? list[0] : null;
         }
 
-        public Task<IList<Event>> GetRange(int begin, int count)
+        public async Task<IList<Event>> GetRange(int begin, int count)
         {
-            throw new NotImplementedException();
+            return await ServiceHelper<Event>.ExecuteSelectCommand(new SelectWithRangeCommand<Event>(begin, count, "Name"));
         }
 
-        public Task<int> GetTotalNumberOfItems()
+        public async Task<int> GetTotalNumberOfItems()
         {
-            throw new NotImplementedException();
+            return Convert.ToInt32(await ServiceHelper<Event>.ExecuteScalarCommand(new CountCommand<Event>()));
         }
 
-        public Task<DbStatus> Update(Event entity)
+        public async Task<DbStatus> Update(Event entity)
         {
-            throw new NotImplementedException();
+            Event existingEvent = await GetByPrimaryKey(entity);
+            if (existingEvent == null)
+                return DbStatus.NOT_FOUND;
+
+            Event eventWithSameUniqueAtributes = await GetByUniqueIdentifiers(new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" }, entity);
+            if (eventWithSameUniqueAtributes!= null)
+                return DbStatus.EXISTS;
+
+            DbCommand<Event> updateCommand = new UpdateCommand<Event>();
+            DbStatus status = await ServiceHelper<Event>.ExecuteCRUDCommand(updateCommand, entity);
+            return status;
         }
     }
 }
