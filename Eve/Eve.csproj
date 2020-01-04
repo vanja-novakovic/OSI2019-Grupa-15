@@ -268,5 +268,10 @@
   <ItemGroup>
     <Resource Include="Images\StartImage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Categories\" />
+    <Folder Include="Events\" />
+    <Folder Include="Quiz\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
