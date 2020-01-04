@@ -21,7 +21,8 @@ namespace Eve.Helpers
                 FontFamily = Eve.Shared.Config.Properties.Default.FontFamily,
                 FontSize = Eve.Shared.Config.Properties.Default.ButtonFontSize,
                 TextAlignment = TextAlignment.Center,
-                Foreground = new SolidColorBrush(Eve.Shared.Config.Properties.Default.FontColor)
+                Foreground = new SolidColorBrush(Eve.Shared.Config.Properties.Default.FontColor),
+                Background = new SolidColorBrush(Shared.Config.Properties.Default.ButtonColor)
             };
         }
 

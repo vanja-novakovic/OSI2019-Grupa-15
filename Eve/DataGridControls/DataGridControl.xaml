@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="Grid">
+    
+    <Grid x:Name="Grid" >
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -35,11 +37,11 @@
             </StackPanel.Effect>
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="DarkBlue" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="Gray" Offset="1"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <TextBlock x:Name="DataGridTitle" Foreground='Wheat'
+            <TextBlock x:Name="DataGridTitle" Foreground='White'
                        Padding='2'
                        VerticalAlignment='Center'
                        FontSize='22'
@@ -51,7 +53,7 @@
                         Padding='4'                      
                         Margin='6'
                         Click='Backwards_Click'
-                        Background="DarkBlue"
+                        Background="#1f262a"
                         Foreground="White"
                         >
                     <TextBlock/>
@@ -60,7 +62,7 @@
                         Padding='4'
                         Margin='6'
                         Click='First_Click'
-                          Background="DarkBlue"
+                          Background="#1f262a"
                         Foreground="White">
                     <TextBlock/>
                 </Button>
@@ -75,7 +77,7 @@
                         Padding='4'
                         Margin='6'
                         Click='Last_Click'
-                          Background="DarkBlue"
+                          Background="#1f262a"
                         Foreground="White">
                     <TextBlock/>
                 </Button>
@@ -83,7 +85,7 @@
                         Padding='4'
                         Margin='6'
                         Click='Forward_Click'
-                        Background="DarkBlue"
+                        Background="#1f262a"
                         Foreground="White">
                     <TextBlock/>
                 </Button>
@@ -105,8 +107,8 @@
                 </DataGrid.Effect>
                 <DataGrid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="DarkBlue" Offset="0"/>
-                        <GradientStop Color="AntiqueWhite" Offset="1"/>
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="Gray" Offset="1"/>
                     </LinearGradientBrush>
                 </DataGrid.Background>
 

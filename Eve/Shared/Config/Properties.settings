@@ -36,7 +36,7 @@
       <Value Profile="(Default)">en-EN</Value>
     </Setting>
     <Setting Name="ButtonColor" Type="System.Windows.Media.Color" Scope="User">
-      <Value Profile="(Default)">#FFF3F3F3</Value>
+      <Value Profile="(Default)">#FF1F262A</Value>
     </Setting>
   </Settings>
 </SettingsFile>

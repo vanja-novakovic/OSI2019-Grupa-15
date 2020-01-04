@@ -10,7 +10,7 @@
     <Grid x:Name="Grid">
 
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/ButtonTheme.JPG" Stretch="UniformToFill"></ImageBrush>
+            <ImageBrush ImageSource="/Images/Image.JPG" Stretch="UniformToFill"></ImageBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
@@ -26,20 +26,20 @@
         <StackPanel x:Name="ButtonsPanel" HorizontalAlignment="Right" Height="479" Margin="-6,20,0,-49" VerticalAlignment="Top" Width="120" Grid.RowSpan="2">
             <my:GoBackControl x:Name="GoBack" Height="28"  HorizontalAlignment="Right" Width="120"/>
             <Rectangle  Height="130" />
-            <Button   x:Name="CreateButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" Click="CreateButton_Click">
+            <Button   x:Name="CreateButton"  Background="#FF1F262A" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" Click="CreateButton_Click">
                 <TextBlock> Create</TextBlock>
             </Button>
             <Rectangle  Height="60" />
-            <Button   x:Name="DeleteButton"  IsEnabled="{Binding SelectedItems.Count}" Background="#7d9e7f" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" Click="DeleteButton_Click">
+            <Button   x:Name="DeleteButton"  IsEnabled="{Binding SelectedItems.Count}" Background="#1f262a" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" Click="DeleteButton_Click">
                 <TextBlock> Delete</TextBlock>
             </Button>
             <Rectangle  Height="60" />
-            <Button   x:Name="EditButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" 
+            <Button   x:Name="EditButton"  Background="#1f262a" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" 
                       IsEnabled="{Binding SelectedItems.Count}" Click="EditButton_Click"  >
                 <TextBlock>Edit</TextBlock>
             </Button>
             <Rectangle  Height="60" />
-            <Button   x:Name="DetailsButton"  Background="DarkBlue" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" 
+            <Button   x:Name="DetailsButton"  Background="#1f262a" Foreground="White" FontWeight="Bold"  HorizontalAlignment="Right" Width="120" Height="28" 
                       IsEnabled="{Binding SelectedItems.Count}"  Click="DetailsButton_Click"  >
                 <TextBlock><Run Text="Details"/></TextBlock>
             </Button>

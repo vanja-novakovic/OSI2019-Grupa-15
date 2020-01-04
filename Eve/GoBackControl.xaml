@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eve"
              mc:Ignorable="d"            >
-    <Button x:Name="GoBackButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Background="DarkBlue" Click="GoBackButton_Click">
+    <Button x:Name="GoBackButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Background="#FF1F262A" Click="GoBackButton_Click">
         <StackPanel x:Name="GoBackStackPanel" Height="24" Width="143" Orientation="Horizontal">
             <Image Source="/Images/GoBack.png"/>
             <Rectangle Width="14" />

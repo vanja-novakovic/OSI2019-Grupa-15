@@ -136,7 +136,7 @@ namespace Eve.Shared.Config {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#FFF3F3F3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF1F262A")]
         public global::System.Windows.Media.Color ButtonColor {
             get {
                 return ((global::System.Windows.Media.Color)(this["ButtonColor"]));
