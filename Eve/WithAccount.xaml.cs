@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eve.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace Eve
 
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowHelper.ShowWindow(this, new Eve.Categories.MainWindow() { PreviousWindow = new WithAccount() });
         }
     }
 }

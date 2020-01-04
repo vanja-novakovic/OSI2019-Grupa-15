@@ -13,7 +13,7 @@
             <Separator Margin="0 5 0 5"></Separator>
             <TextBlock Text="Name:" Foreground="#fff"/>
             <TextBox x:Name="NameBox" FontSize="16" Foreground="#eee" Background="#1f262a" Margin="0 8 0 0" Height="29"/>
-            <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Save" FontSize="16" 
+            <Button x:Name="SaveButton" IsDefault="true" Click="SaveButton_Click" Content="Save" FontSize="16" 
                     Foreground="#fff" Background="#1f262a" Margin="60 20 " Height="33" />
             <TextBlock Text="or" Foreground="#fff" HorizontalAlignment="Center" FontSize="14" />
             <Button x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" FontSize="16"

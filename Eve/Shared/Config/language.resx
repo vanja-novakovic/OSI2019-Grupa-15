@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BackwardsButton" xml:space="preserve">
-    <value>Backwards</value>
+    <value>&lt;  Backwards</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -140,13 +140,13 @@ delete this record?</value>
     <value>Edit</value>
   </data>
   <data name="FirstPageButton" xml:space="preserve">
-    <value>First page</value>
+    <value>&lt;&lt; First page</value>
   </data>
   <data name="ForwardButton" xml:space="preserve">
-    <value>Forward</value>
+    <value>Forwards &gt;</value>
   </data>
   <data name="LastPageButton" xml:space="preserve">
-    <value>Last page</value>
+    <value>Last page &gt;&gt;</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>

@@ -61,7 +61,7 @@ namespace Eve.Shared.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Backwards.
+        ///   Looks up a localized string similar to &lt;  Backwards.
         /// </summary>
         internal static string BackwardsButton {
             get {
@@ -125,7 +125,7 @@ namespace Eve.Shared.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First page.
+        ///   Looks up a localized string similar to &lt;&lt; First page.
         /// </summary>
         internal static string FirstPageButton {
             get {
@@ -134,7 +134,7 @@ namespace Eve.Shared.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forward.
+        ///   Looks up a localized string similar to Forwards &gt;.
         /// </summary>
         internal static string ForwardButton {
             get {
@@ -143,7 +143,7 @@ namespace Eve.Shared.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last page.
+        ///   Looks up a localized string similar to Last page &gt;&gt;.
         /// </summary>
         internal static string LastPageButton {
             get {

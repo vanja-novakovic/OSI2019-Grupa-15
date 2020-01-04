@@ -80,6 +80,7 @@ namespace Eve.DataGridControls
         }
         public async Task Refresh()
         {
+            ListForPage = await GetData(FIRST_NUMBER, NumberOfRecordsPerPage);
             SetPage(PagedTable.First(ListForPage, NumberOfRecordsPerPage).DefaultView);
             TotalNumberOfItems = await GetNumberOfItems();
             SetPage(PagedTable.First(ListForPage, NumberOfRecordsPerPage).DefaultView);

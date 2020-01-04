@@ -50,11 +50,7 @@ namespace Eve.IndexControls
         }
         private void InitializeButtons()
         {
-            ButtonContentHelper.SetContent(CreateButton, language.Create);
-            ButtonContentHelper.SetContent(DeleteButton, language.Delete);
-            ButtonContentHelper.SetContent(EditButton, language.Edit);
-            ButtonContentHelper.SetContent(DetailsButton, language.Details);
-            // ButtonContentHelper.SetStackPaneledButton(GoBack.GoBackButton.Content as StackPanel, GoBack.GoBackText, language.GoBack);
+            ButtonContentHelper.SetStackPaneledButton(GoBack.GoBackButton.Content as StackPanel, GoBack.GoBackText, "GoBack");
             SetButtonsVisibiltiy();
         }
         private void SetButtonsVisibiltiy()

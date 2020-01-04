@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Core.Common;
+using Core.Services.Interfaces;
+using Database.Commands;
+using Database.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,19 +23,45 @@ namespace Eve.Categories
     /// </summary>
     public partial class CreateWindow : Window
     {
+        private readonly ICategoryService categoryService = ServicesFactory.GetInstance().CreateICategoryService();
+
         public CreateWindow()
         {
             InitializeComponent();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrEmpty(NameBox.Text))
+            {
+                ShowMessage("Name is required.", "error");
+            }
+            else
+            {
+                Category category = new Category()
+                {
+                    Name = NameBox.Text
+                };
+                DbStatus status = await categoryService.Add(category);
+                if (status == DbStatus.EXISTS)
+                    ShowMessage("Already exists.", "error");
+                else
+                {
+                    ShowMessage("Successfully added", "Success");
+                    this.Close();
+                }
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
 
+        private void ShowMessage(string message, string caption)
+        {
+            MessageBox.Show(message, caption, MessageBoxButton.OK);
+            NameBox.Name = string.Empty;
         }
     }
 }

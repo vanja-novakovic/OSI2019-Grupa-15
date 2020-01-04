@@ -38,11 +38,21 @@ namespace Eve.Categories
         {
             Category dbCategory = Mapping.Mapper.Map<Category>(category);
             DbStatus status = await categoryService.Delete(dbCategory);
+            if (status == DbStatus.SUCCESS)
+                ShowMessage("Successfully deleted.", "success");
+            else if (status == DbStatus.NOT_FOUND)
+                ShowMessage("Not found", "error");
+            this.Close();
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ShowMessage(string message, string caption)
+        {
+            MessageBox.Show(message, caption, MessageBoxButton.OK);
         }
     }
 }

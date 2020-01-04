@@ -1,21 +1,9 @@
 ﻿using Core.Common;
 using Core.Services.Interfaces;
-using Database.Commands;
 using Database.Entities;
 using Eve.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Eve
 {
@@ -33,33 +21,35 @@ namespace Eve
 
         private void GuestButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Delegate to other window
+            WindowHelper.ShowWindow(this, new GuestMode());
         }
 
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             // Check if person has account
-            Account account = new Account()
-            {
-                Username = UsernameBox.Text,
-                Password = PasswordBox.Password
-            };
-            Account dbAccount = await accountService.GetByUniqueIdentifiers(new string[] { "Username" }, account);
-            if (dbAccount != null && dbAccount.Password == account.Password)
-                WindowHelper.ShowWindow(this, new LoginWindow());
+            if (PasswordBox.Password == string.Empty || PasswordBox.Password is null
+                || UsernameBox.Text == string.Empty || UsernameBox.Text is null)
+                WriteMessageAndClearFields("Password and Username are required.", password: PasswordBox.Password, username: UsernameBox.Text);
             else
             {
-                // Write message and clear fields
-                MessageBox.Show("Account is not valid. Fix errors.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                PasswordBox.Password = string.Empty;
-                UsernameBox.Text = string.Empty;
+                Account account = new Account()
+                {
+                    Username = UsernameBox.Text,
+                    Password = PasswordBox.Password
+                };
+                Account dbAccount = await accountService.GetByUniqueIdentifiers(new string[] { "Username" }, account);
+                if (dbAccount != null && dbAccount.Password == account.Password)
+                    WindowHelper.ShowWindow(this, new WithAccount());
+                else
+                    WriteMessageAndClearFields("Account is not valid. Fix errors.");
             }
-            // TODO: Delegate to other window
         }
-
-        private void SubmitButton_Click_1(object sender, RoutedEventArgs e)
+        private void WriteMessageAndClearFields(string message, string password = "", string username = "")
         {
-
+            // Write message and clear fields
+            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            PasswordBox.Password = password;
+            UsernameBox.Text = username;
         }
     }
 }

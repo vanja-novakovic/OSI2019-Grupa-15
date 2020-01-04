@@ -17,7 +17,7 @@
             <TextBox x:Name="UsernameBox" FontSize="16" Foreground="#eee" Background="#1f262a" Margin="0 8 0 0" Height="29"/>
             <TextBlock Text="Password:" Foreground="#fff" Margin="0 5 0 0"/>
             <PasswordBox x:Name="PasswordBox" FontSize="16" Foreground="#eee" Background="#1f262a" Margin="0 8 0 0" Height="29"/>
-            <Button x:Name="SubmitButton" Click="SubmitButton_Click" Content="Submit" FontSize="16" Foreground="#fff" Background="#1f262a" Margin="60 20 " Height="33" />
+            <Button x:Name="SubmitButton" IsDefault="True" Click="SubmitButton_Click" Content="Submit" FontSize="16" Foreground="#fff" Background="#1f262a" Margin="60 20 " Height="33" />
             <TextBlock Text="or" Foreground="#fff" HorizontalAlignment="Center" FontSize="14" />
             <Button x:Name="GuestButton" Click="GuestButton_Click" Content="Log in as a guest" FontSize="16" Foreground="#fff" Background="#1f262a" Margin="60 20 " Height="33" />
         </StackPanel>

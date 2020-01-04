@@ -23,7 +23,7 @@ namespace Eve.Categories
 
         public override void Edit(object selectedItem, double height = 0, double width = 0)
         {
-            CategoryViewModel category = Mapping.Mapper.Map<CategoryViewModel>(selectedItem as DataRow);
+            CategoryViewModel category = Mapping.Mapper.Map<CategoryViewModel>(selectedItem as DataRowView);
             Window editWindow = new EditWindow(category);
             WindowHelper.SetModal(editWindow, height, width);
             editWindow.ShowDialog();
@@ -36,7 +36,7 @@ namespace Eve.Categories
 
         public override void Delete(object selectedItem, double height = 0, double width = 0)
         {
-            CategoryViewModel category = Mapping.Mapper.Map<CategoryViewModel>(selectedItem as DataRow);
+            CategoryViewModel category = Mapping.Mapper.Map<CategoryViewModel>(selectedItem as DataRowView);
             Window confirmDeleteWindow = new ConfirmDeleteWindow(category);
             WindowHelper.CenterWindow(confirmDeleteWindow, height, width);
             confirmDeleteWindow.ShowDialog();
