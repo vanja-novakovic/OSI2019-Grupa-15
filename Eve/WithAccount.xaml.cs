@@ -12,24 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Eve.Categories
+namespace Eve
 {
     /// <summary>
-    /// Interaction logic for CreateWindow.xaml
+    /// Interaction logic for AfterLoginForm.xaml
     /// </summary>
-    public partial class CreateWindow : Window
+    public partial class AfterLoginForm : Window
     {
-        public CreateWindow()
+        public AfterLoginForm()
         {
             InitializeComponent();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void EventButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

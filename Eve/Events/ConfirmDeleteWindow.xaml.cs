@@ -12,24 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Eve.Categories
+namespace Eve.Events
 {
     /// <summary>
-    /// Interaction logic for CreateWindow.xaml
+    /// Interaction logic for ConfirmDeleteWindow.xaml
     /// </summary>
-    public partial class CreateWindow : Window
+    public partial class ConfirmDeleteWindow : Window
     {
-        public CreateWindow()
+        public ConfirmDeleteWindow()
         {
             InitializeComponent();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void YesButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void NoButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

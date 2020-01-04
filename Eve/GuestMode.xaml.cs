@@ -12,24 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Eve.Categories
+namespace Eve
 {
     /// <summary>
-    /// Interaction logic for CreateWindow.xaml
+    /// Interaction logic for GuestMode.xaml
     /// </summary>
-    public partial class CreateWindow : Window
+    public partial class GuestMode : Window
     {
-        public CreateWindow()
+        public GuestMode()
         {
             InitializeComponent();
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void ViewEventButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void PlayQuizButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

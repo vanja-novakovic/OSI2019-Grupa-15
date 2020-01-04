@@ -56,5 +56,10 @@ namespace Eve
             }
             // TODO: Delegate to other window
         }
+
+        private void SubmitButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

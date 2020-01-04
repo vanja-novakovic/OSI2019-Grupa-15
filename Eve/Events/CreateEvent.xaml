@@ -1,0 +1,44 @@
+﻿<Window x:Class="Eve.Events.CreateEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eve.Events"
+        mc:Ignorable="d"
+        Title="CreateEvent" Height="450" Width="800">
+   
+    <Border CornerRadius="10" Background="#1f262a">
+        <StackPanel>
+            <TextBlock Text="Create Event" FontSize="20" Foreground="#fff" Margin="10 10 10 1" HorizontalAlignment="Center"/>
+            <Separator Margin="30 0 30 1"/>
+            <TextBlock Text="Name:" FontSize="16" Foreground="#fff" Margin="30 10 30 1"/>
+            <TextBox Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="29" VerticalAlignment="Center" Foreground="#fff"/>
+            <TextBlock Text="Location:" FontSize="16" Foreground="#fff" Margin="30 10 30 1"/>
+            <ComboBox SelectedIndex="0" Padding="2" Margin="30,0,30,1"   Height="28" Foreground="#000" VerticalContentAlignment="Center">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" Value="#1f262a"/>
+                        <Setter Property="BorderBrush" Value="#1f262a"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBoxItem>Location1</ComboBoxItem>
+                <ComboBoxItem>Location2</ComboBoxItem>
+                <ComboBoxItem>Location3</ComboBoxItem>
+                <ComboBoxItem>Location4</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Category:" FontSize="16" Foreground="#fff" Margin="30 10 30 1" />
+            <ComboBox SelectedIndex="0" Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="28" VerticalContentAlignment="Center">
+                <ComboBoxItem>Category1</ComboBoxItem>
+                <ComboBoxItem>Category2</ComboBoxItem>
+                <ComboBoxItem>Category3</ComboBoxItem>
+                <ComboBoxItem>Category4</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Description:" FontSize="16" Foreground="#fff" Margin="30 10 30 1"/>
+            <TextBox Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="29" VerticalAlignment="Center" Foreground="#fff"/>
+            <TextBlock Text="Organizers:" FontSize="16" Foreground="#fff" Margin="30 10 30 1"/>
+            <TextBox Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="29" VerticalAlignment="Center" Foreground="#fff"/>
+
+        </StackPanel>
+    </Border>
+
+</Window>

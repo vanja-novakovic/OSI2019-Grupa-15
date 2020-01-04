@@ -12,26 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Eve.Categories
+namespace Eve.Events
 {
     /// <summary>
-    /// Interaction logic for CreateWindow.xaml
+    /// Interaction logic for CreateEvent.xaml
     /// </summary>
-    public partial class CreateWindow : Window
+    public partial class CreateEvent : Window
     {
-        public CreateWindow()
+        public CreateEvent()
         {
             InitializeComponent();
-        }
-
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
