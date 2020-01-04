@@ -111,10 +111,23 @@
     </Compile>
     <Compile Include="AutoMapper\Mapping.cs" />
     <Compile Include="AutoMapper\MappingProfile.cs" />
+    <Compile Include="Categories\ConfirmDeleteWindow.xaml.cs">
+      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\CreateWindow.xaml.cs">
+      <DependentUpon>CreateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\DataGridControlElementCategory.cs" />
+    <Compile Include="Categories\EditWindow.xaml.cs">
+      <DependentUpon>EditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\IndexControlElementCategory.cs" />
     <Compile Include="DataGridControls\DataGridControl.xaml.cs">
       <DependentUpon>DataGridControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataGridControls\DataGridControlElement.cs" />
+    <Compile Include="Events\DataGridControlElementEvent.cs" />
+    <Compile Include="Events\IndexControlElementEvent.cs" />
     <Compile Include="GoBackControl.xaml.cs">
       <DependentUpon>GoBackControl.xaml</DependentUpon>
     </Compile>
@@ -152,6 +165,7 @@
       <DependentUpon>TranslateControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AccountViewModel.cs" />
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -233,6 +247,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Categories\ConfirmDeleteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Categories\CreateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Categories\EditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataGridControls\DataGridControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -269,8 +295,6 @@
     <Resource Include="Images\StartImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Categories\" />
-    <Folder Include="Events\" />
     <Folder Include="Quiz\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

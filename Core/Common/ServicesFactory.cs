@@ -21,5 +21,20 @@ namespace Core.Common
         {
             return new AccountService();
         }
+
+        public ICategoryService CreateICategoryService()
+        {
+            return new CategoryService();
+        }
+
+        public IEventService CreateIEventService()
+        {
+            return new EventService();
+        }
+
+        public IQuizService CreateIQuizService()
+        {
+            return new QuizService();
+        }
     }
 }
