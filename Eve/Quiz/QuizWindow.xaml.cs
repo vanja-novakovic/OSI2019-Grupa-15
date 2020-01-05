@@ -10,7 +10,6 @@ namespace Eve.Quiz
     /// </summary>
     public partial class QuizWindow : Window, IWindowReturnable
     {
-        private readonly IQuizService quizService = ServicesFactory.GetInstance().CreateIQuizService();
         private readonly Quiz quiz;
         public Window windowToReturn;
 
@@ -20,6 +19,7 @@ namespace Eve.Quiz
             windowToReturn = new GuestMode();
             InitializeComponent();
             InitializeQuestionAndAnswers();
+            ConfirmButton.IsEnabled = false;
         }
 
         public void ReturnToPreviousWindow()
@@ -44,7 +44,7 @@ namespace Eve.Quiz
             First.Content = quiz.Answers[0].Content;
             Second.Content = quiz.Answers[1].Content;
             Third.Content = quiz.Answers[2].Content;
-            NumberLabel.Content = "Correct:" + quiz.CorrectAnswersNum + " and  wrong:" + quiz.WrongAnswersNum;
+            NumberLabel.Content = "Correct: " + quiz.CorrectAnswersNum + "\nWrong: " + quiz.WrongAnswersNum;
         }
 
         private async void ConfirmButton_Click(object sender, RoutedEventArgs e)
@@ -70,5 +70,19 @@ namespace Eve.Quiz
             ReturnToPreviousWindow();
         }
 
+        private void First_Checked(object sender, RoutedEventArgs e)
+        {
+            ConfirmButton.IsEnabled = true;
+        }
+
+        private void Second_Checked(object sender, RoutedEventArgs e)
+        {
+            ConfirmButton.IsEnabled = true;
+        }
+
+        private void Third_Checked(object sender, RoutedEventArgs e)
+        {
+            ConfirmButton.IsEnabled = true;
+        }
     }
 }

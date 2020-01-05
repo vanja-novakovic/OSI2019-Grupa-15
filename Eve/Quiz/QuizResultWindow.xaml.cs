@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eve.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,17 @@ namespace Eve.Quiz
         {
             int wrongQuestion = totalNumberOfQuestions - correctQuestions;
             InitializeComponent();
-            ResultLabel.Content = "Your result: " + correctQuestions;
+            ResultLabel.Content = "" + correctQuestions + " / " + totalNumberOfQuestions;
         }
 
+        private async void PlayAgainButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowHelper.ShowWindow(this, new QuizWindow(await Quiz.GetFirst()));
+        }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowHelper.ShowWindow(this, new GuestMode());
+        }
     }
 }

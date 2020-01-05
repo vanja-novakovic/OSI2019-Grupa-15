@@ -148,7 +148,7 @@ namespace Eve.Shared.Config {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int TotalNumberOfQuestions {
             get {
                 return ((int)(this["TotalNumberOfQuestions"]));

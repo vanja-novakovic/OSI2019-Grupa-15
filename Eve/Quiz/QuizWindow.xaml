@@ -13,13 +13,13 @@
         <StackPanel Margin="30,30,30,10">
             <TextBlock Text="Quiz" Foreground="#fff" HorizontalAlignment="Center" FontSize="20"/>
             <Separator Margin="0 5 0 5"></Separator>
-            <GroupBox x:Name="GroupBoxQuestion" Header ="Is this the first question?" Foreground="White"
+            <GroupBox x:Name="GroupBoxQuestion" Header ="Is this the first question?"  Foreground="White"
                       HorizontalContentAlignment="Center" FontSize="16" Height="201">
                 <StackPanel x:Name="AnswersStackPanel">
-                    <RadioButton x:Name="First" Margin="5 5" Content="This is the first answer. " Foreground="White"></RadioButton>
-                    <RadioButton x:Name="Second" Margin="5 5" Content="This is the second answer. " Foreground="White"></RadioButton>
-                    <RadioButton x:Name="Third" Margin="5 5" Content="This is the third answer. " Foreground="White"></RadioButton>
-                    <Label x:Name="NumberLabel" Foreground="White" Margin="5 5" Height="55"></Label>
+                    <RadioButton Checked="First_Checked" x:Name="First" Margin="5 5" Content="This is the first answer. " Foreground="White"></RadioButton>
+                    <RadioButton Checked="Second_Checked" x:Name="Second" Margin="5 5" Content="This is the second answer. " Foreground="White"></RadioButton>
+                    <RadioButton Checked="Third_Checked" x:Name="Third" Margin="5 5" Content="This is the third answer. " Foreground="White"></RadioButton>
+                    <Label x:Name="NumberLabel" Foreground="White" FontSize="16" HorizontalContentAlignment="Right" Margin="5 5" Height="55"></Label>
                 </StackPanel>
             </GroupBox>
             <Button x:Name="ConfirmButton" Content="Confirm" FontSize="14" VerticalAlignment="Bottom"

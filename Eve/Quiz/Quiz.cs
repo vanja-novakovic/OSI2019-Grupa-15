@@ -38,38 +38,12 @@ namespace Eve.Quiz
         {
             List<QuestionViewModel> nextQuestions = Mapping.Mapper.Map<List<Question>, List<QuestionViewModel>>
                   (await quizService.GetRandomQuestions(TotalNumberOfQuestions));
-
-            QuestionViewModel nextQuestion = nextQuestions.First();
-            List<AnswerViewModel> newAnswers = Mapping.Mapper.Map<List<Answer>, List<AnswerViewModel>>(await quizService.GetAnswers(nextQuestion.IdQuestion));
-            int correctNum = 0;
-            int wrongNum = 0;
-            return new Quiz()
-            {
-                Questions = nextQuestions,
-                Answers = newAnswers,
-                CurrentQuestion = nextQuestion,
-                CorrectAnswersNum = correctNum,
-                WrongAnswersNum = wrongNum
-            };
+            return await SetQuiz(nextQuestions);
         }
+
         public async Task<Quiz> GetNext()
         {
-            List<QuestionViewModel> nextQuestions = Questions.Skip(1).ToList();
-            if (nextQuestions.Count == 0)
-                return null;
-
-            QuestionViewModel nextQuestion = nextQuestions.First();
-            List<AnswerViewModel> newAnswers = Mapping.Mapper.Map<List<Answer>, List<AnswerViewModel>>(await quizService.GetAnswers(nextQuestion.IdQuestion));
-            int correctNum = CorrectAnswersNum;
-            int wrongNum = WrongAnswersNum;
-            return new Quiz()
-            {
-                Questions = nextQuestions,
-                Answers = newAnswers,
-                CurrentQuestion = nextQuestion,
-                CorrectAnswersNum = correctNum,
-                WrongAnswersNum = wrongNum
-            };
+            return await SetQuiz(Questions.Skip(1).ToList(), CorrectAnswersNum, WrongAnswersNum);
         }
 
         public void ChooseAnswer(int indexOfAnswer)
@@ -77,6 +51,23 @@ namespace Eve.Quiz
             if (Answers[indexOfAnswer].Correct == 1)
                 CorrectAnswersNum++;
             else WrongAnswersNum++;
+        }
+
+        private static async Task<Quiz> SetQuiz(List<QuestionViewModel> nextQuestions, int correctNum = 0, int wrongNum = 0)
+        {
+            if (nextQuestions.Count == 0)
+                return null;
+
+            QuestionViewModel nextQuestion = nextQuestions.First();
+            List<AnswerViewModel> newAnswers = Mapping.Mapper.Map<List<Answer>, List<AnswerViewModel>>(await quizService.GetAnswers(nextQuestion.IdQuestion));
+            return new Quiz()
+            {
+                Questions = nextQuestions,
+                Answers = newAnswers,
+                CurrentQuestion = nextQuestion,
+                CorrectAnswersNum = correctNum,
+                WrongAnswersNum = wrongNum
+            };
         }
     }
 }
