@@ -29,6 +29,8 @@ namespace Eve.AutoMapper
 
             CreateMap<CategoryViewModel, Category>().ReverseMap();
 
+            CreateMap<Question, QuestionViewModel>().ReverseMap();
+            CreateMap<Answer, AnswerViewModel>().ReverseMap();
         }
     }
 }

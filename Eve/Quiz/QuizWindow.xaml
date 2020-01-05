@@ -5,25 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eve.Quiz"
         mc:Ignorable="d"
-        Title="QuizWindow" Height="450" Width="650">
+        Title="QuizWindow" Height="525" Width="746">
     <Window.Background>
         <ImageBrush ImageSource="QuizImages/Image.jpg" Stretch="Fill"/>
     </Window.Background>
     <Border Background="#1f262a" CornerRadius="10" Margin="50 40 50 40">
-        <StackPanel Margin="30">
+        <StackPanel Margin="30,30,30,10">
             <TextBlock Text="Quiz" Foreground="#fff" HorizontalAlignment="Center" FontSize="20"/>
             <Separator Margin="0 5 0 5"></Separator>
             <GroupBox x:Name="GroupBoxQuestion" Header ="Is this the first question?" Foreground="White"
-                      HorizontalContentAlignment="Center" FontSize="16" Height="150">
-                <StackPanel>
-                    <RadioButton Margin="5 5" Content="This is the first answer. " Foreground="White"></RadioButton>
-                    <RadioButton Margin="5 5" Content="This is the second answer. " Foreground="White"></RadioButton>
-                    <RadioButton Margin="5 5" Content="This is the third answer. " Foreground="White"></RadioButton>
+                      HorizontalContentAlignment="Center" FontSize="16" Height="201">
+                <StackPanel x:Name="AnswersStackPanel">
+                    <RadioButton x:Name="First" Margin="5 5" Content="This is the first answer. " Foreground="White"></RadioButton>
+                    <RadioButton x:Name="Second" Margin="5 5" Content="This is the second answer. " Foreground="White"></RadioButton>
+                    <RadioButton x:Name="Third" Margin="5 5" Content="This is the third answer. " Foreground="White"></RadioButton>
+                    <Label x:Name="NumberLabel" Foreground="White" Margin="5 5" Height="55"></Label>
                 </StackPanel>
             </GroupBox>
             <Button x:Name="ConfirmButton" Content="Confirm" FontSize="14" VerticalAlignment="Bottom"
-                    Margin="0,20,20,0" HorizontalAlignment="Center" Click="ConfirmButton_Click"
-                    Foreground="White" Background="#1f262a" Width="83" Height="35"></Button>
+                    Margin="190,20,210,0" HorizontalAlignment="Center" Click="ConfirmButton_Click"
+                    Foreground="White" Background="#1f262a" Width="82" Height="35"/>
+            <Button x:Name="CancelButton" Foreground="White" Content="Cancel" FontSize="14" VerticalAlignment="Bottom"
+                    Margin="0,20,20,0" HorizontalAlignment="Center" Click="CancelButton_Click"
+                     Background="#1f262a" Width="83" Height="35" RenderTransformOrigin="0.494,1.286"></Button>
         </StackPanel>
     </Border>
 </Window>

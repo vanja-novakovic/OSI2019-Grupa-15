@@ -1,32 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Common;
+using Core.Services.Interfaces;
+using Eve.Helpers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Eve.Quiz
 {
     /// <summary>
     /// Interaction logic for QuizWindow.xaml
     /// </summary>
-    public partial class QuizWindow : Window
+    public partial class QuizWindow : Window, IWindowReturnable
     {
-        public QuizWindow()
+        private readonly IQuizService quizService = ServicesFactory.GetInstance().CreateIQuizService();
+        private readonly Quiz quiz;
+        public Window windowToReturn;
+
+        public QuizWindow(Quiz quiz)
         {
+            this.quiz = quiz;
+            windowToReturn = new GuestMode();
             InitializeComponent();
+            InitializeQuestionAndAnswers();
         }
 
-        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        public void ReturnToPreviousWindow()
         {
 
+            MessageBoxResult result = MessageBox.Show("Are you sure?", "warning", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+                WindowHelper.ShowWindow(this, windowToReturn);
         }
+
+        public void SetReturningWindow(Window window)
+        {
+            windowToReturn = window;
+        }
+
+        private void InitializeQuestionAndAnswers()
+        {
+            // Set question
+            GroupBoxQuestion.Header = quiz.CurrentQuestion.Content;
+
+            // Set answers
+            First.Content = quiz.Answers[0].Content;
+            Second.Content = quiz.Answers[1].Content;
+            Third.Content = quiz.Answers[2].Content;
+            NumberLabel.Content = "Correct:" + quiz.CorrectAnswersNum + " and  wrong:" + quiz.WrongAnswersNum;
+        }
+
+        private async void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            int indexOfAnswer = 0;
+            if (First.IsChecked.Value)
+                indexOfAnswer = 0;
+            else if (Second.IsChecked.Value)
+                indexOfAnswer = 1;
+            else if (Third.IsChecked.Value)
+                indexOfAnswer = 2;
+            quiz.ChooseAnswer(indexOfAnswer);
+
+            Quiz newQuiz = await quiz.GetNext();
+            if (newQuiz == null)
+                WindowHelper.ShowWindow(this, new QuizResultWindow(quiz.CorrectAnswersNum, Quiz.TotalNumberOfQuestions));
+            else
+                WindowHelper.ShowWindow(this, new QuizWindow(newQuiz));
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReturnToPreviousWindow();
+        }
+
     }
 }

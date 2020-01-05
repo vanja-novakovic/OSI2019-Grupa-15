@@ -118,6 +118,12 @@
     <Compile Include="GuestMode.xaml.cs">
       <DependentUpon>GuestMode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Quiz\QuizResultWindow.xaml.cs">
+      <DependentUpon>QuizResultWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AnswerViewModel.cs" />
+    <Compile Include="ViewModel\QuestionViewModel.cs" />
+    <Compile Include="Quiz\Quiz.cs" />
     <Compile Include="WithAccount.xaml.cs">
       <DependentUpon>WithAccount.xaml</DependentUpon>
     </Compile>
@@ -277,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GuestMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Quiz\QuizResultWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

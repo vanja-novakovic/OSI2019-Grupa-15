@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Core.Common;
+using Core.Services.Interfaces;
+using Database.Entities;
+using Eve.Helpers;
+using Eve.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +24,8 @@ namespace Eve
     /// </summary>
     public partial class GuestMode : Window
     {
+        private readonly IQuizService quizService = ServicesFactory.GetInstance().CreateIQuizService();
+
         public GuestMode()
         {
             InitializeComponent();
@@ -29,9 +36,11 @@ namespace Eve
 
         }
 
-        private void PlayQuizButton_Click(object sender, RoutedEventArgs e)
+        private async void PlayQuizButton_Click(object sender, RoutedEventArgs e)
         {
 
+            Quiz.Quiz quiz = await Quiz.Quiz.GetFirst();
+            WindowHelper.ShowWindow(this, new Quiz.QuizWindow(quiz));
         }
     }
 }
