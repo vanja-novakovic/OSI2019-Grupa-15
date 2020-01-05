@@ -12,7 +12,7 @@ namespace Database.Entities
 
         public string Content { get; set; }
 
-        public byte True { get; set; }
+        public byte Correct { get; set; }
 
         public int IdQuestion { get; set; }
 
