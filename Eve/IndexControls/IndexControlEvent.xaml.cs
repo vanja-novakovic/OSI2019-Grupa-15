@@ -46,7 +46,7 @@ namespace Eve.IndexControls
             InitializeComboBoxes();
         }
 
-        private void InitializeComboBoxes()
+        private async void InitializeComboBoxes()
         {
             FilterComboBox.Items.Add(EventFilter.NONE);
             FilterComboBox.Items.Add(EventFilter.FUTURE);
@@ -57,6 +57,10 @@ namespace Eve.IndexControls
             SortComboBox.Items.Add("ScheduledOn [Latest first]");
             SortComboBox.Items.Add("Name [A-Z]");
             SortComboBox.Items.Add("Name [Z-A]");
+
+            List<Category> categories = await categoryService.GetAll() as List<Category>;
+            foreach (var cat in categories)
+                CategoryComboBox.Items.Add(Mapping.Mapper.Map<CategoryViewModel>(cat));
         }
 
         private void InitializeDataGrid()
@@ -119,9 +123,7 @@ namespace Eve.IndexControls
         private async void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             EventFilter eventFilter = (EventFilter)FilterComboBox.SelectedItem;
-            List<Category> categories = await categoryService.GetAll() as List<Category>;
-            foreach (var cat in categories)
-                CategoryComboBox.Items.Add(Mapping.Mapper.Map<CategoryViewModel>(cat));
+
             (string orderBy, string order) = GetOrder();
 
             if (eventFilter == EventFilter.CATEGORY)

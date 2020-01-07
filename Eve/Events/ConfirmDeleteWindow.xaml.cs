@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Core.Common;
+using Core.Services.Interfaces;
+using Database.Commands;
+using Database.Entities;
+using Eve.AutoMapper;
+using Eve.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,19 +25,35 @@ namespace Eve.Events
     /// </summary>
     public partial class ConfirmDeleteWindow : Window
     {
-        public ConfirmDeleteWindow()
+        private readonly IEventService eventService = ServicesFactory.GetInstance().CreateIEventService();
+        private readonly EventViewModel eventModel;
+        public ConfirmDeleteWindow(EventViewModel eventModel)
         {
+            this.eventModel = eventModel;
             InitializeComponent();
         }
 
-        private void YesButton_Click(object sender, RoutedEventArgs e)
+        private void ShowMessage(string message, string caption)
         {
+            var res = MessageBox.Show(message, caption, MessageBoxButton.OK);
+            if (res == MessageBoxResult.OK)
+                this.Close();
+        }
 
+        private async void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            DbStatus status = await eventService.Delete(Mapping.Mapper.Map<Event>(eventModel));
+            if (status == DbStatus.NOT_FOUND)
+                ShowMessage("Not found! ", "Error");
+            else if (status == DbStatus.DATABASE_ERROR)
+                ShowMessage("Database error! ", "Error");
+            else
+                ShowMessage("Successfully deleted! ", "Success");
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

@@ -122,6 +122,7 @@
     <Compile Include="Quiz\QuizResultWindow.xaml.cs">
       <DependentUpon>QuizResultWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddressViewModel.cs" />
     <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\EventViewModel.cs" />
     <Compile Include="ViewModel\QuestionViewModel.cs" />

@@ -25,10 +25,6 @@
                         <Setter Property="BorderBrush" Value="#1f262a"/>
                     </Style>
                 </ComboBox.ItemContainerStyle>
-                <ComboBoxItem>Location1</ComboBoxItem>
-                <ComboBoxItem>Location2</ComboBoxItem>
-                <ComboBoxItem>Location3</ComboBoxItem>
-                <ComboBoxItem>Location4</ComboBoxItem>
             </ComboBox>
 
             <TextBlock Text="Category:" FontSize="16" Foreground="#fff" Margin="30 10 30 1" />
@@ -40,10 +36,6 @@
                         <Setter Property="BorderBrush" Value="#1f262a"/>
                     </Style>
                 </ComboBox.ItemContainerStyle>
-                <ComboBoxItem>Category1</ComboBoxItem>
-                <ComboBoxItem>Category2</ComboBoxItem>
-                <ComboBoxItem>Category3</ComboBoxItem>
-                <ComboBoxItem>Category4</ComboBoxItem>
             </ComboBox>
 
             <TextBlock Text="Date:" FontSize="16" Foreground="#fff" Margin="30 10 30 1" />

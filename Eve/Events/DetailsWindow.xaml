@@ -17,34 +17,14 @@
                      Foreground="#fff"/>
 
             <TextBlock Text="Address:" FontSize="16" Foreground="#fff" Margin="30 10 30 1"/>
-            <ComboBox x:Name="Address" SelectedIndex="0" Padding="2" Margin="30,0,30,1"   Height="28" Foreground="#000" 
+            <TextBox x:Name="Address" Padding="2" Margin="30,0,30,1" Background="#1f262a"   Height="28" Foreground="#000" 
                       VerticalContentAlignment="Center">
-                <ComboBox.ItemContainerStyle>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="Background" Value="#1f262a"/>
-                        <Setter Property="BorderBrush" Value="#1f262a"/>
-                    </Style>
-                </ComboBox.ItemContainerStyle>
-                <ComboBoxItem>Location1</ComboBoxItem>
-                <ComboBoxItem>Location2</ComboBoxItem>
-                <ComboBoxItem>Location3</ComboBoxItem>
-                <ComboBoxItem>Location4</ComboBoxItem>
-            </ComboBox>
+            </TextBox>
 
             <TextBlock Text="Category:" FontSize="16" Foreground="#fff" Margin="30 10 30 1" />
-            <ComboBox x:Name="Category" SelectedIndex="0" Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="28"   
+            <TextBox x:Name="Category" Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="28"   
                       VerticalContentAlignment="Center">
-                <ComboBox.ItemContainerStyle>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="Background" Value="#1f262a"/>
-                        <Setter Property="BorderBrush" Value="#1f262a"/>
-                    </Style>
-                </ComboBox.ItemContainerStyle>
-                <ComboBoxItem>Category1</ComboBoxItem>
-                <ComboBoxItem>Category2</ComboBoxItem>
-                <ComboBoxItem>Category3</ComboBoxItem>
-                <ComboBoxItem>Category4</ComboBoxItem>
-            </ComboBox>
+            </TextBox>
 
             <TextBlock Text="Date:" FontSize="16" Foreground="#fff" Margin="30 10 30 1" />
             <DatePicker x:Name="Date" Padding="2" Margin="30 0 30 1" Background="#1f262a" Height="28" VerticalContentAlignment="Center"/>

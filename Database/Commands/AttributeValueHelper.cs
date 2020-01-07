@@ -25,7 +25,9 @@ namespace Database.Commands
                 return "\"" + entityAttribute + "\"";
             else if (entityAttribute.GetType() == typeof(DateTime))
             {
-                return "Date(" + "\"" + ((DateTime)entityAttribute).ToString("yyyy-MM-dd H:mm:ss") + "\"" + ")";
+                // return "Date(" + "\"" + ((DateTime)entityAttribute).ToString("yyyy-MM-dd HH:mm:ss") + "\"" + ")";
+                return "\"" + ((DateTime)entityAttribute).ToString("yyyy-MM-dd HH:mm:ss") + "\"";
+
             }
             else
                 return entityAttribute.ToString();
