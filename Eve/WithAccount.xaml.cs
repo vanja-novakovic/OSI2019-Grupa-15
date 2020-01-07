@@ -27,12 +27,17 @@ namespace Eve
 
         private void EventButton_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowHelper.ShowWindow(this, new Eve.Events.MainWindow(ApplicationMode.REGISTERED_USER) { PreviousWindow = new WithAccount() });
         }
 
         private void CategoryButton_Click(object sender, RoutedEventArgs e)
         {
             WindowHelper.ShowWindow(this, new Eve.Categories.MainWindow() { PreviousWindow = new WithAccount() });
+        }
+
+        private void SignOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowHelper.ShowWindow(this, new LoginWindow());
         }
     }
 }

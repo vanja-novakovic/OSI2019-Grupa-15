@@ -13,12 +13,18 @@
         <TextBlock Text="Please make your choice" Foreground="#ffff" FontSize="25"  HorizontalAlignment="Center" Margin="80 80 80 1"/>
         <Separator  Foreground="#ffff" Margin="250 0"/>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition>
+                </RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button  x:Name="EventButton" Click="EventButton_Click" Grid.Column="0" Margin="50" Content="EVENTS" FontSize="20" Foreground="#fff" Background="#1f262a" Padding="10"/>
             <Button  x:Name="CategoryButton" Click="CategoryButton_Click" Grid.Column="1" Margin="50" Content="CATEGORIES" FontSize="20" Foreground="#fff" Background="#1f262a" Padding="10"/>
+            <Button  x:Name="SignOutButton" Click="SignOutButton_Click" Grid.ColumnSpan="2" Grid.Row="1" Margin="274,47,272,53" Content="SIGN OUT" FontSize="20" Foreground="#fff" Background="#1f262a" Padding="10"/>
         </Grid>
     </StackPanel>
 

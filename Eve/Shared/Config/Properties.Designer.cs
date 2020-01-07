@@ -70,30 +70,6 @@ namespace Eve.Shared.Config {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-EN")]
-        public string LanguageClass {
-            get {
-                return ((string)(this["LanguageClass"]));
-            }
-            set {
-                this["LanguageClass"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Switch to Serbian")]
-        public string TranslateText {
-            get {
-                return ((string)(this["TranslateText"]));
-            }
-            set {
-                this["TranslateText"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int NumberOfRecordsPerPage {
             get {
@@ -119,18 +95,6 @@ namespace Eve.Shared.Config {
         public int LabelFontSize {
             get {
                 return ((int)(this["LabelFontSize"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-EN")]
-        public string Language {
-            get {
-                return ((string)(this["Language"]));
-            }
-            set {
-                this["Language"] = value;
             }
         }
         

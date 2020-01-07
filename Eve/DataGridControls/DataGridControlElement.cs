@@ -88,7 +88,7 @@ namespace Eve.DataGridControls
         public string PageNumberDisplay()
         {
             int PagedNumber = (NextNumber + NumberOfRecordsPerPage) > TotalNumberOfItems ? TotalNumberOfItems : NextNumber + NumberOfRecordsPerPage;
-            return language.ShowingResults + (PagedNumber + @"/" + TotalNumberOfItems);
+            return "Showing results " + (PagedNumber + @"/" + TotalNumberOfItems);
         }
         protected async Task SetFields(int nextNumber)
         {
@@ -108,11 +108,9 @@ namespace Eve.DataGridControls
 
         public void InitializeColumns()
         {
-            ResourceManager rm = new ResourceManager("Eve.Shared.Config.language", Assembly.GetExecutingAssembly());
-            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
             foreach (var x in DataGrid.Columns)
             {
-                x.Header = rm.GetString(x.SortMemberPath, cultureInfo) ?? x.SortMemberPath;
+                x.Header = x.SortMemberPath;
             }
             HideColumns();
         }
@@ -170,8 +168,6 @@ namespace Eve.DataGridControls
             {
                 DataTable TableToReturn = new DataTable();
 
-                ResourceManager rm = new ResourceManager("VirtualDoctor.Shared.Config.language", Assembly.GetExecutingAssembly());
-                CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
                 foreach (var Column in DataType.GetProperties())
                 {
                     TableToReturn.Columns.Add(Column.Name, Column.PropertyType);

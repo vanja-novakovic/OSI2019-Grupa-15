@@ -33,7 +33,7 @@ namespace Eve
 
         private void ViewEventButton_Click(object sender, RoutedEventArgs e)
         {
-            WindowHelper.ShowWindow(this, new Eve.Events.MainWindow());
+            WindowHelper.ShowWindow(this, new Eve.Events.MainWindow() { PreviousWindow = new GuestMode() });
         }
 
         private async void PlayQuizButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +41,11 @@ namespace Eve
 
             Quiz.Quiz quiz = await Quiz.Quiz.GetFirst();
             WindowHelper.ShowWindow(this, new Quiz.QuizWindow(quiz));
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowHelper.ShowWindow(this, new LoginWindow());
         }
     }
 }

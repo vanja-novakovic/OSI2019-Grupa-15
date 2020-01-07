@@ -32,10 +32,10 @@ namespace Eve.DataGridControls
 
         private void InitializeButtons()
         {
-            Helpers.ButtonContentHelper.SetContent(First, language.FirstPageButton);
-            Helpers.ButtonContentHelper.SetContent(Last, language.LastPageButton);
-            Helpers.ButtonContentHelper.SetContent(Backwards, language.BackwardsButton);
-            Helpers.ButtonContentHelper.SetContent(Forward, language.ForwardButton);
+            Helpers.ButtonContentHelper.SetContent(First, "<< First");
+            Helpers.ButtonContentHelper.SetContent(Last, "Last >>");
+            Helpers.ButtonContentHelper.SetContent(Backwards, "< Backwards");
+            Helpers.ButtonContentHelper.SetContent(Forward, "Forwards >");
 
         }
 
