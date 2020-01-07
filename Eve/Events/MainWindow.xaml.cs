@@ -28,8 +28,9 @@ namespace Eve.Events
         {
             InitializeComponent();
             WindowHelper.SetBorder(this, this.Grid);
-            Visibility crudButtonVisibility = mode == ApplicationMode.GUEST_MODE ? Visibility.Hidden : Visibility.Visible;
-            IndexControlEvent control = new IndexControlEvent(new IndexControlElementEvent(), new DataGridControlElementEvent(), detailsBtnVisibility: Visibility.Visible, crudBtnVisibility: crudButtonVisibility);
+            Visibility sortFilterBtnVisibility;
+            Visibility crudButtonVisibility = sortFilterBtnVisibility = mode == ApplicationMode.GUEST_MODE ? Visibility.Hidden : Visibility.Visible;
+            IndexControlEvent control = new IndexControlEvent(new IndexControlElementEvent(), new DataGridControlElementEvent(), detailsBtnVisibility: Visibility.Visible, crudBtnVisibility: crudButtonVisibility, sortFilterBtnVisibility: sortFilterBtnVisibility);
             control.SetBorder(Height, Width);
             Grid.Children.Add(control);
         }

@@ -25,10 +25,13 @@ namespace Eve.IndexControls
 
         private readonly Visibility detailsBtnVisibility;
         private readonly Visibility crudBtnVisibility;
+        private readonly Visibility sortFilterBtnVisibility;
+
         public IndexControlEvent(IndexControlElementEvent indexControlElementEvent, DataGridControlElementEvent dataGridControlElementEvent,
-            Visibility detailsBtnVisibility = Visibility.Hidden, Visibility crudBtnVisibility = Visibility.Visible)
+            Visibility detailsBtnVisibility = Visibility.Hidden, Visibility crudBtnVisibility = Visibility.Visible, Visibility sortFilterBtnVisibility = Visibility.Visible)
         {
             InitializeComponent();
+            this.sortFilterBtnVisibility = sortFilterBtnVisibility;
             this.IndexControlElementEvent = indexControlElementEvent;
             this.DataGridControlElementEvent = dataGridControlElementEvent;
             this.DataGridControlEvent = new DataGridControlEvent(dataGridControlElementEvent);
@@ -86,7 +89,8 @@ namespace Eve.IndexControls
         {
             DetailsButton.Visibility = detailsBtnVisibility;
             EditButton.Visibility = CreateButton.Visibility = DeleteButton.Visibility = crudBtnVisibility;
-
+            SortLabel.Visibility = SortComboBox.Visibility = sortFilterBtnVisibility;
+            FilterLabel.Visibility = FilterComboBox.Visibility = sortFilterBtnVisibility;
         }
         public void SetBorder(double height, double width)
         {
