@@ -1,7 +1,12 @@
 ﻿using Core.Common;
+using Core.Services.Interfaces;
+using Database.Entities;
+using Eve.AutoMapper;
 using Eve.DataGridControls;
 using Eve.Helpers;
+using Eve.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,6 +17,8 @@ namespace Eve.IndexControls
     /// </summary>
     public partial class IndexControlEvent : UserControl
     {
+        private readonly ICategoryService categoryService = ServicesFactory.GetInstance().CreateICategoryService();
+
         public IndexControlElementEvent IndexControlElementEvent { get; set; }
         public DataGridControlEvent DataGridControlEvent { get; set; }
         public DataGridControlElementEvent DataGridControlElementEvent { get; set; }
@@ -46,8 +53,10 @@ namespace Eve.IndexControls
             FilterComboBox.Items.Add(EventFilter.PRESENT);
             FilterComboBox.Items.Add(EventFilter.CATEGORY);
 
-            SortComboBox.Items.Add("ScheduledOn");
-            SortComboBox.Items.Add("Name");
+            SortComboBox.Items.Add("ScheduledOn [Earliest first]");
+            SortComboBox.Items.Add("ScheduledOn [Latest first]");
+            SortComboBox.Items.Add("Name [A-Z]");
+            SortComboBox.Items.Add("Name [Z-A]");
         }
 
         private void InitializeDataGrid()
@@ -110,15 +119,55 @@ namespace Eve.IndexControls
         private async void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             EventFilter eventFilter = (EventFilter)FilterComboBox.SelectedItem;
-            string orderBy = SortComboBox.SelectedItem == null ? null : (string)(SortComboBox.SelectedItem);
-            await DataGridControlElementEvent.Refresh(eventFilter, null, orderBy);
+            List<Category> categories = await categoryService.GetAll() as List<Category>;
+            foreach (var cat in categories)
+                CategoryComboBox.Items.Add(Mapping.Mapper.Map<CategoryViewModel>(cat));
+            (string orderBy, string order) = GetOrder();
+
+            if (eventFilter == EventFilter.CATEGORY)
+            {
+                CategoryLabel.Visibility = Visibility.Visible;
+                CategoryComboBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CategoryLabel.Visibility = Visibility.Hidden;
+                CategoryComboBox.Visibility = Visibility.Hidden;
+                await DataGridControlElementEvent.Refresh(eventFilter, null, orderBy, order);
+            }
         }
 
         private async void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             EventFilter eventFilter = FilterComboBox.SelectedItem == null ? EventFilter.NONE : (EventFilter)(FilterComboBox.SelectedItem);
-            string orderBy = (string)(SortComboBox.SelectedItem);
-            await DataGridControlElementEvent.Refresh(eventFilter, null, orderBy);
+            (string orderBy, string order) = GetOrder();
+
+            await DataGridControlElementEvent.Refresh(eventFilter, null, orderBy, order);
+
+        }
+
+        private async void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            (string orderBy, string order) = GetOrder();
+
+            EventFilter eventFilter = EventFilter.CATEGORY;
+            CategoryViewModel category = (CategoryViewModel)CategoryComboBox.SelectedItem;
+            await DataGridControlElementEvent.Refresh(eventFilter, category.IdCategory, orderBy, order);
+        }
+
+        private (string orderBy, string order) GetOrder()
+        {
+            string orderBy = SortComboBox.SelectedItem == null ? "Name [A-Z]" : (string)(SortComboBox.SelectedItem);
+            string order = "asc";
+            switch (orderBy)
+            {
+                case "ScheduledOn [Earliest first]": order = "asc"; orderBy = "ScheduledOn"; break;
+                case "ScheduledOn [Latest first]": order = "desc"; orderBy = "ScheduledOn"; break;
+                case "Name [A-Z]": order = "asc"; orderBy = "Name"; break;
+                default: order = "desc"; orderBy = "Name"; break;
+            }
+            return (orderBy, order);
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eve"
         mc:Ignorable="d"
-        Title="GuestMode" Height="450" Width="800">
+        Title="GuestMode" Height="500" Width="900" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="Images/Image.jpg" Stretch="Fill"></ImageBrush>
     </Window.Background>

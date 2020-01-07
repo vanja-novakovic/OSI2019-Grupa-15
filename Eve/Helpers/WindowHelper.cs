@@ -29,8 +29,8 @@ namespace Eve.Helpers
             window.Height = Shared.Config.Properties.Default.WindowHeightProportion * SystemParameters.FullPrimaryScreenHeight;
             window.Width = Shared.Config.Properties.Default.WindowWidthProportion * SystemParameters.FullPrimaryScreenWidth;
             int Count = WindowHelper.CalculateGridMaxCount(grid);
-            window.Left = SystemParameters.BorderWidth;
-            window.Top = SystemParameters.FixedFrameHorizontalBorderHeight;
+         //   window.Left = SystemParameters.BorderWidth;
+           // window.Top = SystemParameters.FixedFrameHorizontalBorderHeight;
             return Count;
         }
 

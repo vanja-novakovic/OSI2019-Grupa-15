@@ -45,8 +45,10 @@
             </Button>
         </StackPanel>
         <ComboBox x:Name="FilterComboBox" SelectionChanged="FilterComboBox_SelectionChanged" Grid.Column="2" HorizontalAlignment="Left" Margin="2,108,0,0" VerticalAlignment="Top" Width="112"/>
-        <ComboBox x:Name="SortComboBox" SelectionChanged="SortComboBox_SelectionChanged" Grid.Column="2" HorizontalAlignment="Left" Margin="2,237,0,0" VerticalAlignment="Top" Width="112"/>
+        <ComboBox x:Name="SortComboBox" SelectionChanged="SortComboBox_SelectionChanged" Grid.Column="2" HorizontalAlignment="Left" Margin="2,272,0,0" VerticalAlignment="Top" Width="112"/>
         <Label x:Name="FilterLabel" Content="Filter by" Foreground="White" FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Left" Margin="4,84,0,0" VerticalAlignment="Top" Width="108"/>
-        <Label x:Name="SortLabel" Content="Sort by" Foreground="White" FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Left" Margin="0,213,0,0" VerticalAlignment="Top" Width="112"/>
+        <Label x:Name="SortLabel" Content="Sort by" Foreground="White" FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Left" Margin="4,241,-2,0" VerticalAlignment="Top" Width="112"/>
+        <ComboBox Grid.Column="2" x:Name="CategoryComboBox" SelectionChanged="CategoryComboBox_SelectionChanged" Visibility="Hidden" HorizontalAlignment="Left" Margin="4,188,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="CategoryLabel" Foreground="White" FontWeight="Bold" Content="Choose category" Visibility="Hidden" Grid.Column="2" HorizontalAlignment="Left" Margin="4,165,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </UserControl>

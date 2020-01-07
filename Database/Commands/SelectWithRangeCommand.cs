@@ -12,11 +12,13 @@ namespace Database.Commands
         private readonly int offset;
         private readonly int limit;
         private readonly string orderByAttribute;
+        private readonly string order = "asc";
 
-        public SelectWithRangeCommand(int offset, int limit, string orderByAttribute)
+        public SelectWithRangeCommand(int offset, int limit, string orderByAttribute, string order = "asc")
         {
             this.orderByAttribute = orderByAttribute;
             this.offset = offset;
+            this.order = order;
             this.limit = limit;
         }
 
@@ -24,7 +26,7 @@ namespace Database.Commands
         protected override void SetCommand(MySqlConnection connection, string tableName, T entity)
         {
             mySqlCommand.Connection = connection;
-            mySqlCommand.CommandText = "SELECT * FROM " + tableName + " ORDER BY " + orderByAttribute + " LIMIT " + limit + " OFFSET " + offset;
+            mySqlCommand.CommandText = "SELECT * FROM " + tableName + " ORDER BY " + orderByAttribute + " " + order + " " + " LIMIT " + limit + " OFFSET " + offset;
         }
     }
 }

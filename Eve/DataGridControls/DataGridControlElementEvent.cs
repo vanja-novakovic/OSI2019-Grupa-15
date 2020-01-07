@@ -30,6 +30,8 @@ namespace Eve.DataGridControls
 
         public string OrderByAttribute { get; set; }
 
+        public string OrderDirection { get; set; } = "asc";
+
         public EventFilter Filter { get; set; } = EventFilter.NONE;
 
         public int? IdCategory { get; set; } = null;
@@ -59,7 +61,7 @@ namespace Eve.DataGridControls
 
         public async void SetList()
         {
-            ListForPage = await GetData(FIRST_NUMBER, NumberOfRecordsPerPage, Filter, IdCategory, OrderByAttribute);
+            ListForPage = await GetData(FIRST_NUMBER, NumberOfRecordsPerPage, Filter, IdCategory, OrderByAttribute, OrderDirection);
         }
         public async void SetTotalNumberOfItems()
         {
@@ -98,12 +100,14 @@ namespace Eve.DataGridControls
             await SetFields(FIRST_NUMBER);
             SetPage(PagedTable.First(ListForPage, NumberOfRecordsPerPage).DefaultView);
         }
-        public async Task Refresh(EventFilter filter = EventFilter.NONE, int? categoryId = null, string orderByAttribute = null)
+        public async Task Refresh(EventFilter filter = EventFilter.NONE, int? categoryId = null, string orderByAttribute = null, string orderDirection = "asc")
         {
             Filter = filter;
             OrderByAttribute = orderByAttribute;
+            IdCategory = categoryId;
+            OrderDirection = orderDirection;
             TotalNumberOfItems = await GetNumberOfItems(Filter, IdCategory);
-            ListForPage = await GetData(FIRST_NUMBER, NumberOfRecordsPerPage, filter, categoryId, orderByAttribute);
+            ListForPage = await GetData(FIRST_NUMBER, NumberOfRecordsPerPage, filter, categoryId, orderByAttribute, orderDirection);
             NextNumber = FIRST_NUMBER;
             SetPage(PagedTable.First(ListForPage, NumberOfRecordsPerPage).DefaultView);
         }
@@ -112,14 +116,14 @@ namespace Eve.DataGridControls
             int PagedNumber = (NextNumber + NumberOfRecordsPerPage) > TotalNumberOfItems ? TotalNumberOfItems : NextNumber + NumberOfRecordsPerPage;
             return language.ShowingResults + (PagedNumber + @"/" + TotalNumberOfItems);
         }
-        protected async Task SetFields(int nextNumber)
+        public async Task SetFields(int nextNumber)
         {
             if (nextNumber <= 0)
             {
                 nextNumber = 0;
             }
             NextNumber = nextNumber;
-            ListForPage = await GetData(NextNumber, NumberOfRecordsPerPage, Filter, IdCategory, OrderByAttribute);
+            ListForPage = await GetData(NextNumber, NumberOfRecordsPerPage, Filter, IdCategory, OrderByAttribute, OrderDirection);
         }
         public void SetPage(DataView dataViewToDisplay)
         {
@@ -127,11 +131,11 @@ namespace Eve.DataGridControls
             PageInfo.Content = PageNumberDisplay();
         }
 
-        private async Task<IList> GetData(int index, int number, EventFilter filter = EventFilter.NONE, int? categoryId = null, string orderByAttribute = null)
+        private async Task<IList> GetData(int index, int number, EventFilter filter = EventFilter.NONE, int? categoryId = null, string orderByAttribute = null, string orderDirection = "asc")
         {
             string cityName = Shared.Config.Properties.Default.City;
-            List<Event> categories = await eventService.GetRangeInOneCityWithFilter(index, number, cityName, filter, categoryId, orderByAttribute);
-            List<EventViewModel> models = Mapping.Mapper.Map<List<Event>, List<EventViewModel>>(categories);
+            List<Event> events = await eventService.GetRangeInOneCityWithFilter(index, number, cityName, filter, categoryId, orderByAttribute, orderDirection);
+            List<EventViewModel> models = Mapping.Mapper.Map<List<Event>, List<EventViewModel>>(events);
             return models;
         }
 

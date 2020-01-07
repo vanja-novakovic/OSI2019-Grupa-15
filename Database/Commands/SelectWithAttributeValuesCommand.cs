@@ -13,15 +13,17 @@ namespace Database.Commands
     {
         private readonly string[] attributeNames;
         private readonly string orderByAttribute;
+        private string order = "asc";
 
         /// <summary>
         /// Specify during construction of object of type SelectWithAttributeValuesCommand what to put in WHERE expression
         /// </summary>
         /// <param name="attributeNames">Names of attributes from that table to put in WHERE</param>
-        public SelectWithAttributeValuesCommand(string[] attributeNames, string orderByAttribute = null)
+        public SelectWithAttributeValuesCommand(string[] attributeNames, string orderByAttribute = null, string order = "asc")
         {
             this.attributeNames = attributeNames;
             this.orderByAttribute = orderByAttribute;
+            this.order = order;
         }
 
         protected override void SetCommand(MySqlConnection connection, string tableName, T entity)
@@ -29,7 +31,7 @@ namespace Database.Commands
             mySqlCommand.Connection = connection;
             mySqlCommand.CommandText = BuildCommandText(tableName, entity);
             if (orderByAttribute != null)
-                mySqlCommand.CommandText += " ORDER BY " + orderByAttribute;
+                mySqlCommand.CommandText += " ORDER BY " + orderByAttribute + " " + order;
         }
 
         private string BuildCommandText(string tableName, T entity)

@@ -12,16 +12,18 @@ namespace Database.Commands
     {
         private readonly int offset;
         private readonly int limit;
+        private readonly string order = "asc";
         private readonly string orderByAttribute;
         private readonly string[] filterAttributes;
         private T entity;
 
-        public SelectWithRangeAndFilterCommand(int offset, int limit, string orderByAttribute, string[] attributes, T entity)
+        public SelectWithRangeAndFilterCommand(int offset, int limit, string orderByAttribute, string[] attributes, T entity, string order = "asc")
         {
             this.orderByAttribute = orderByAttribute;
             this.offset = offset;
             this.limit = limit;
             this.entity = entity;
+            this.order = order;
             this.filterAttributes = attributes;
         }
 
@@ -30,7 +32,7 @@ namespace Database.Commands
         {
             mySqlCommand.Connection = connection;
             string whereExpression = BuildWhereExpression(this.entity, filterAttributes);
-            mySqlCommand.CommandText = "SELECT * FROM " + tableName + " " + whereExpression + " ORDER BY " + orderByAttribute
+            mySqlCommand.CommandText = "SELECT * FROM " + tableName + " " + whereExpression + " ORDER BY " + orderByAttribute + " " + order + " "
                 + " LIMIT " + limit + " OFFSET " + offset;
         }
     }

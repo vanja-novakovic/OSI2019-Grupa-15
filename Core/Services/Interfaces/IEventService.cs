@@ -7,10 +7,10 @@ namespace Core.Services.Interfaces
 {
     public interface IEventService : ICrudServiceTemplate<Event>
     {
-        Task<List<Event>> GetRangeInOneCity(int offset, int limit, string cityName, string orderByAttribute);
+        Task<List<Event>> GetRangeInOneCity(int offset, int limit, string cityName, string orderByAttribute, string order = "asc");
 
         Task<int> GetCountInOneCity(string cityName, EventFilter filter, int? idCategory = null);
 
-        Task<List<Event>> GetRangeInOneCityWithFilter(int offset, int limit, string cityName, EventFilter filter, int? idCategory = null, string orderByAttribute = null);
+        Task<List<Event>> GetRangeInOneCityWithFilter(int offset, int limit, string cityName, EventFilter filter, int? idCategory = null, string orderByAttribute = null, string order = "asc");
     }
 }

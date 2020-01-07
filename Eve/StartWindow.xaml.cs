@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Eve.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +24,13 @@ namespace Eve
         public StartWindow()
         {
             InitializeComponent();
+        }
+
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            Thread.Sleep(3000);
+            WindowHelper.ShowWindow(this, new LoginWindow());
         }
     }
 }
