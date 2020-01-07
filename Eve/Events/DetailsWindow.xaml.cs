@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Eve.Accounts
+namespace Eve.Events
 {
     /// <summary>
-    /// Interaction logic for UpdateWindow.xaml
+    /// Interaction logic for DetailsWindow.xaml
     /// </summary>
-    public partial class UpdateWindow : Window
+    public partial class DetailsWindow : Window
     {
-        public UpdateWindow(ViewModel.AccountViewModel accountViewModel)
+        public DetailsWindow()
         {
             InitializeComponent();
+        }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

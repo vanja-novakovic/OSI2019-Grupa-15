@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\SelectWithRangeAndFilterCommand.cs" />
     <Compile Include="Config\Constants.Designer.cs">
       <DependentUpon>Constants.settings</DependentUpon>
       <AutoGen>True</AutoGen>

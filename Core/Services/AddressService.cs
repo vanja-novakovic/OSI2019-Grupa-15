@@ -41,6 +41,7 @@ namespace Core.Services
         public async Task<Address> GetByPrimaryKey(Address entity)
         {
             var list = await ServiceHelper<Address>.ExecuteSelectCommand(new SelectWithPrimaryKeyCommand<Address>(), entity);
+            var x = list;
             // If no object is found, return null
             return list.Count != 0 ? list[0] : null;
         }

@@ -15,7 +15,7 @@
             Margin="126,51,127,277"    Height="91" Width="539" Foreground="White" FontSize="20"/>
         
 
-        <Label x:Name="ResultLabel" Content="This is the label. " HorizontalAlignment="Center" 
+        <Label x:Name="ResultLabel" Content="The result. " HorizontalAlignment="Center" 
               VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                 Height="76" Width="287" Foreground="White" FontSize="20" Margin="252,118,253,225"/>
         <Button x:Name="PlayAgainButton" Content="Play Again" Click="PlayAgainButton_Click" Foreground="White" Background="#1f262a" FontSize="14" Height="30"

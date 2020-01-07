@@ -17,6 +17,16 @@ namespace Core.Common
             return instance;
         }
 
+        public ICityService CreateICityService()
+        {
+            return new CityService();
+        }
+
+        public IAddressService CreateIAddressService()
+        {
+            return new AddressService();
+        }
+
         public IAccountService CreateIAccountService()
         {
             return new AccountService();

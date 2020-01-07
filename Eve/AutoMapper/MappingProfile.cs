@@ -31,6 +31,9 @@ namespace Eve.AutoMapper
 
             CreateMap<Question, QuestionViewModel>().ReverseMap();
             CreateMap<Answer, AnswerViewModel>().ReverseMap();
+
+            CreateMap<Event, EventViewModel>().AfterMap((src, dest) => dest.SetAddress(src.IdAddress));
+            CreateMap<EventViewModel, Event>();
         }
     }
 }

@@ -12,16 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Eve.Accounts
+namespace Eve.Events
 {
     /// <summary>
-    /// Interaction logic for DetailsWindow.xaml
+    /// Interaction logic for EditEvent.xaml
     /// </summary>
-    public partial class DetailsWindow : Window
+    public partial class EditEvent : Window
     {
-        public DetailsWindow(ViewModel.AccountViewModel accountViewModel)
+        public EditEvent()
         {
             InitializeComponent();
+        }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -154,5 +154,14 @@ namespace Eve.Shared.Config {
                 return ((int)(this["TotalNumberOfQuestions"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Banja Luka")]
+        public string City {
+            get {
+                return ((string)(this["City"]));
+            }
+        }
     }
 }

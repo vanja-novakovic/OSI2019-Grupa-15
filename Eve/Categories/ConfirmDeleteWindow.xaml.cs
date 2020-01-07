@@ -39,9 +39,9 @@ namespace Eve.Categories
             Category dbCategory = Mapping.Mapper.Map<Category>(category);
             DbStatus status = await categoryService.Delete(dbCategory);
             if (status == DbStatus.SUCCESS)
-                ShowMessage("Successfully deleted.", "success");
+                ShowMessage("Successfully deleted!", "Success");
             else if (status == DbStatus.NOT_FOUND)
-                ShowMessage("Not found", "error");
+                ShowMessage("Not found!", "Error");
             this.Close();
         }
 

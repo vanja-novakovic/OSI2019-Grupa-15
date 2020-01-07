@@ -12,18 +12,24 @@ namespace Database.Commands
     public class SelectWithAttributeValuesCommand<T> : DbCommand<T> where T : IDbTableAssociate, IUniquelyIdentifiable
     {
         private readonly string[] attributeNames;
+        private readonly string orderByAttribute;
+
         /// <summary>
         /// Specify during construction of object of type SelectWithAttributeValuesCommand what to put in WHERE expression
         /// </summary>
         /// <param name="attributeNames">Names of attributes from that table to put in WHERE</param>
-        public SelectWithAttributeValuesCommand(string[] attributeNames)
+        public SelectWithAttributeValuesCommand(string[] attributeNames, string orderByAttribute = null)
         {
             this.attributeNames = attributeNames;
+            this.orderByAttribute = orderByAttribute;
         }
+
         protected override void SetCommand(MySqlConnection connection, string tableName, T entity)
         {
             mySqlCommand.Connection = connection;
             mySqlCommand.CommandText = BuildCommandText(tableName, entity);
+            if (orderByAttribute != null)
+                mySqlCommand.CommandText += " ORDER BY " + orderByAttribute;
         }
 
         private string BuildCommandText(string tableName, T entity)

@@ -34,7 +34,7 @@ namespace Eve.Categories
         {
             if (string.IsNullOrEmpty(NameBox.Text))
             {
-                ShowMessage("Name is required.", "error");
+                ShowMessage("Name is required!", "Error");
             }
             else
             {
@@ -44,10 +44,10 @@ namespace Eve.Categories
                 };
                 DbStatus status = await categoryService.Add(category);
                 if (status == DbStatus.EXISTS)
-                    ShowMessage("Already exists.", "error");
+                    ShowMessage("Already exists!", "Error");
                 else
                 {
-                    ShowMessage("Successfully added", "Success");
+                    ShowMessage("Successfully added!", "Success");
                     this.Close();
                 }
             }

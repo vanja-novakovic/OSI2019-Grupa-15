@@ -12,6 +12,8 @@ namespace Core.Services
 {
     public class EventService : IEventService
     {
+        private ICityService cityService = ServicesFactory.GetInstance().CreateICityService();
+
         public async Task<DbStatus> Add(Event entity)
         {
             string[] uniqueAtributes = new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" };
@@ -44,7 +46,7 @@ namespace Core.Services
         public async Task<Event> GetByPrimaryKey(Event entity)
         {
             var list = await ServiceHelper<Event>.ExecuteSelectCommand(new SelectWithPrimaryKeyCommand<Event>(), entity);
-            return list.Count != 0 ? list[0] : null; 
+            return list.Count != 0 ? list[0] : null;
 
         }
 
@@ -53,6 +55,44 @@ namespace Core.Services
             var list = await ServiceHelper<Event>.ExecuteSelectCommand(new SelectWithAttributeValuesCommand<Event>(propertyNames), entity);
             return list.Count != 0 ? list[0] : null;
         }
+
+        public async Task<int> GetCountInOneCity(string cityName, EventFilter filter, int? idCategory = null)
+        {
+            City city = await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = cityName });
+            Event tmp = new Event()
+            {
+                IdCity = city.IdCity,
+            };
+            if (filter == EventFilter.CATEGORY)
+            {
+                tmp.IdCategory = idCategory.Value;
+                DbCommand<Event> scalarCommand = new CountCommand<Event>(new string[] { "IdCity", "IdCategory" }, tmp);
+                return Convert.ToInt32(await ServiceHelper<Event>.ExecuteScalarCommand(scalarCommand));
+            }
+            else
+            {
+                DbCommand<Event> selectCommand = new SelectWithAttributeValuesCommand<Event>(new string[] { "IdCity" });
+                List<Event> events = await ServiceHelper<Event>.ExecuteSelectCommand(selectCommand, tmp);
+                if (filter == EventFilter.PRESENT)
+                    return events.Where(x => x.ScheduledOn.Date == DateTime.Now.Date).ToList().Count;
+                else if (filter == EventFilter.FUTURE)
+                    return events.Where(x => x.ScheduledOn > DateTime.Now).ToList().Count;
+                else
+                    return events.Count;
+            }
+        }
+
+        public async Task<List<Event>> GetRangeInOneCity(int offset, int limit, string cityName, string orderByAttribute)
+        {
+            City city = await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = cityName });
+            Event tmp = new Event()
+            {
+                IdCity = city.IdCity
+            };
+            DbCommand<Event> selectCommand = new SelectWithRangeAndFilterCommand<Event>(offset, limit, "Name", new string[] { "IdCity" }, tmp);
+            return await ServiceHelper<Event>.ExecuteSelectCommand(selectCommand);
+        }
+
 
         public async Task<IList<Event>> GetRange(int begin, int count)
         {
@@ -71,12 +111,39 @@ namespace Core.Services
                 return DbStatus.NOT_FOUND;
 
             Event eventWithSameUniqueAtributes = await GetByUniqueIdentifiers(new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" }, entity);
-            if (eventWithSameUniqueAtributes!= null)
+            if (eventWithSameUniqueAtributes != null)
                 return DbStatus.EXISTS;
 
             DbCommand<Event> updateCommand = new UpdateCommand<Event>();
             DbStatus status = await ServiceHelper<Event>.ExecuteCRUDCommand(updateCommand, entity);
             return status;
         }
+
+        public async Task<List<Event>> GetRangeInOneCityWithFilter(int offset, int limit, string cityName, EventFilter filter, int? idCategory = null, string orderByAttribute = null)
+        {
+            City city = await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = cityName });
+            Event tmp = new Event()
+            {
+                IdCity = city.IdCity,
+            };
+            if (filter == EventFilter.CATEGORY)
+            {
+                tmp.IdCategory = idCategory.Value;
+                DbCommand<Event> selectCommand = new SelectWithRangeAndFilterCommand<Event>(offset, limit, orderByAttribute ?? "Name", new string[] { "IdCity", "IdCategory" }, tmp);
+                return await ServiceHelper<Event>.ExecuteSelectCommand(selectCommand);
+            }
+            else
+            {
+                DbCommand<Event> selectCommand = new SelectWithAttributeValuesCommand<Event>(new string[] { "IdCity" }, orderByAttribute ?? "Name");
+                List<Event> events = await ServiceHelper<Event>.ExecuteSelectCommand(selectCommand, tmp);
+                if (filter == EventFilter.PRESENT)
+                    events = events.Where(x => x.ScheduledOn.Date == DateTime.Now.Date).ToList();
+                else if (filter == EventFilter.FUTURE)
+                    events = events.Where(x => x.ScheduledOn > DateTime.Now).ToList();
+                return events.Skip(offset).Take(limit).ToList(); ;
+            }
+
+        }
+
     }
 }

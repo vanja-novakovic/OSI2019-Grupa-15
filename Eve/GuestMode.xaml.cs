@@ -33,7 +33,7 @@ namespace Eve
 
         private void ViewEventButton_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowHelper.ShowWindow(this, new Eve.Events.MainWindow());
         }
 
         private async void PlayQuizButton_Click(object sender, RoutedEventArgs e)

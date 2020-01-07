@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eve.Events
+namespace Core.Common
 {
-    class DataGridControlElementEvent
+    public enum EventFilter
     {
+        FUTURE, PRESENT, CATEGORY, NONE
     }
 }

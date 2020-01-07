@@ -25,7 +25,7 @@ namespace Eve.Quiz
         public void ReturnToPreviousWindow()
         {
 
-            MessageBoxResult result = MessageBox.Show("Are you sure?", "warning", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
                 WindowHelper.ShowWindow(this, windowToReturn);
         }

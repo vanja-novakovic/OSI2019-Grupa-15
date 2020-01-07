@@ -45,15 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EventFilter.cs" />
     <Compile Include="Common\ServiceHelper.cs" />
     <Compile Include="Common\ServicesFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AddressCityService.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Services\Interfaces\IAddressCityService.cs" />
     <Compile Include="Services\Interfaces\IAddressService.cs" />
     <Compile Include="Services\Interfaces\ICategoryService.cs" />
     <Compile Include="Services\Interfaces\ICityService.cs" />

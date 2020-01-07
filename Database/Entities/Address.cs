@@ -18,7 +18,7 @@ namespace Database.Entities
 
         public string[] GetPrimaryKeyPropertyNames()
         {
-            return new string[] { "IdAddres" };
+            return new string[] { "IdAddress" };
         }
     }
 }

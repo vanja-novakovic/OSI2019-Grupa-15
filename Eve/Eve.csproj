@@ -92,36 +92,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Accounts\ConfirmDeleteWindow.xaml.cs">
-      <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Accounts\DataGridControlElementAccount.cs" />
-    <Compile Include="Accounts\DetailsWindow.xaml.cs">
-      <DependentUpon>DetailsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Accounts\IndexControlElementAccount.cs" />
-    <Compile Include="Accounts\CreateWindow.xaml.cs">
-      <DependentUpon>CreateWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Accounts\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Accounts\UpdateWindow.xaml.cs">
-      <DependentUpon>UpdateWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Categories\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataGridControls\DataGridControlElementEvent.cs" />
+    <Compile Include="DataGridControls\DataGridControlEvent.xaml.cs">
+      <DependentUpon>DataGridControlEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationMode.cs" />
     <Compile Include="Events\CreateEvent.xaml.cs">
       <DependentUpon>CreateEvent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Events\DetailsWindow.xaml.cs">
+      <DependentUpon>DetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Events\EditEvent.xaml.cs">
+      <DependentUpon>EditEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Events\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GuestMode.xaml.cs">
       <DependentUpon>GuestMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IndexControls\IndexControlElementEvent.cs" />
+    <Compile Include="IndexControls\IndexControlEvent.xaml.cs">
+      <DependentUpon>IndexControlEvent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Quiz\QuizResultWindow.xaml.cs">
       <DependentUpon>QuizResultWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AnswerViewModel.cs" />
+    <Compile Include="ViewModel\EventViewModel.cs" />
     <Compile Include="ViewModel\QuestionViewModel.cs" />
     <Compile Include="Quiz\Quiz.cs" />
     <Compile Include="WithAccount.xaml.cs">
@@ -147,8 +149,6 @@
     <Compile Include="Events\ConfirmDeleteWindow.xaml.cs">
       <DependentUpon>ConfirmDeleteWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Events\DataGridControlElementEvent.cs" />
-    <Compile Include="Events\IndexControlElementEvent.cs" />
     <Compile Include="GoBackControl.xaml.cs">
       <DependentUpon>GoBackControl.xaml</DependentUpon>
     </Compile>
@@ -254,27 +254,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Accounts\ConfirmDeleteWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Accounts\CreateWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Accounts\DetailsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Accounts\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Accounts\UpdateWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Categories\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataGridControls\DataGridControlEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,7 +266,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Events\DetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Events\EditEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Events\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GuestMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IndexControls\IndexControlEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
