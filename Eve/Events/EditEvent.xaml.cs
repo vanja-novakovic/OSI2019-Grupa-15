@@ -46,6 +46,7 @@ namespace Eve.Events
             Name.Text = eventModel.Name;
             Description.Text = eventModel.Description;
             Organizers.Text = eventModel.Organizers;
+            Duration.Text = eventModel.Duration.ToString();
             foreach (var address in Address.Items)
             {
                 if (((AddressViewModel)address).IdAddress == eventModel.IdAddress)
@@ -56,7 +57,7 @@ namespace Eve.Events
                 if (((CategoryViewModel)category).IdCategory == eventModel.IdCategory)
                     Category.SelectedItem = category;
             }
-            Time.Text = eventModel.ScheduledOn.Hour + ":" + eventModel.ScheduledOn.Minute;
+            Time.Text = eventModel.ScheduledOn.TimeOfDay.ToString().Substring(0, 5);
             Date.SelectedDate = eventModel.ScheduledOn.Date;
         }
 
@@ -73,9 +74,9 @@ namespace Eve.Events
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             DateTime scheduledOn = (DateTime)Date.SelectedDate;
-            DateTime time = DateTime.ParseExact(Time.Text, "hh:mm", System.Globalization.CultureInfo.InvariantCulture);
-            scheduledOn.AddHours(time.Hour);
-            scheduledOn.AddMinutes(time.Minute);
+            DateTime time = DateTime.ParseExact(Time.Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            scheduledOn = scheduledOn.Add(time.TimeOfDay);
+
             int idCity = (await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = Shared.Config.Properties.Default.City })).IdCity;
             Event @event = new Event()
             {
@@ -87,7 +88,7 @@ namespace Eve.Events
                 ScheduledOn = scheduledOn,
                 Organizers = Organizers.Text,
                 IdCity = idCity,
-                Duration = 60
+                Duration = int.Parse(Duration.Text)
             };
 
             DbStatus status = await eventService.Update(@event);

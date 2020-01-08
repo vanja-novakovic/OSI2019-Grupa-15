@@ -48,12 +48,14 @@ namespace Eve.Events
             Organizers.Text = eventModel.Organizers;
             Name.Text = eventModel.Name;
             Name.IsEnabled = false;
-            Time.Text = eventModel.ScheduledOn.Hour + ":" + eventModel.ScheduledOn.Minute;
+            Time.Text = eventModel.ScheduledOn.TimeOfDay.ToString().Substring(0, 5);
             Time.IsEnabled = false;
             Date.SelectedDate = eventModel.ScheduledOn.Date;
             Date.IsEnabled = false;
             Organizers.IsEnabled = false;
             Description.IsEnabled = false;
+            Duration.Text = eventModel.Duration.ToString();
+            Duration.IsEnabled = false;
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)

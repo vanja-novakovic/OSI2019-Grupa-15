@@ -18,7 +18,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="NumberOfRecordsPerPage" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="FontColor" Type="System.Windows.Media.Color" Scope="Application">
       <Value Profile="(Default)">#FFFFFFFF</Value>

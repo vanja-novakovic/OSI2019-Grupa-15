@@ -53,6 +53,7 @@ namespace Eve.Events
             DateTime scheduledOn = (DateTime)Date.SelectedDate;
             DateTime time = DateTime.ParseExact(Time.Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
             scheduledOn = scheduledOn.Add(time.TimeOfDay);
+            
             int idCity = (await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = Shared.Config.Properties.Default.City })).IdCity;
             Event @event = new Event()
             {
@@ -63,8 +64,8 @@ namespace Eve.Events
                 ScheduledOn = scheduledOn,
                 Organizers = Organizers.Text,
                 IdCity = idCity,
-                Duration = 60
-            };
+                Duration = int.Parse(Duration.Text)
+        };
 
             DbStatus status = await eventService.Add(@event);
             if (status == DbStatus.EXISTS)
