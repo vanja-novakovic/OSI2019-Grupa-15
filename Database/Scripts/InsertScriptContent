@@ -1,0 +1,208 @@
+use eve;
+delete from event;
+alter table event auto_increment=1;
+delete from address_city;
+alter table address_city auto_increment=1;
+delete from address;
+alter table address auto_increment=1;
+delete from city;
+alter table city auto_increment=1;
+delete from category;
+alter table category auto_increment=1;
+delete from account;
+alter table account auto_increment=1;
+DELETE FROM answer;
+alter table answer auto_increment=1;
+delete from question;
+alter table question auto_increment=1;
+insert into account(username, password) values('Admin', 'admin');
+insert into account(username, password) values('Vanja', 'vanja');
+insert into account(username, password) values('Ivana', 'ivana');
+insert into address(name) values('Trg srpskih vladara 1');
+insert into address(name) values('Kralja Alfonsa XIII bb');
+insert into address(name) values('Bulevar Živojina Mišića br. 31 (zgrada Titanik)');
+insert into address(name) values('Ulica Josifa Pančića br. 4');
+insert into address(name) values('Gundulićeva 100');
+insert into address(name) values('Aleja Svetog Save 59/11');
+insert into address(name) values('Milana Tepića 8');
+insert into address(name) values('Ulica Krupa');
+insert into city(name) values('Banja Luka');
+insert into city(name) values('Prijedor');
+insert into city(name) values('Trebinje');
+insert into address_city(idaddress, idcity) values(1,1);
+insert into address_city(idaddress, idcity) values(2,1);
+insert into address_city(idaddress, idcity) values(3,1);
+insert into address_city(idaddress, idcity) values(4,1);
+insert into address_city(idaddress, idcity) values(5,1);
+insert into address_city(idaddress, idcity) values(6,1);
+insert into address_city(idaddress, idcity) values(7,1);
+insert into address_city(idaddress, idcity) values(8,1);
+insert into address_city(idaddress, idcity) values(5,2);
+insert into address_city(idaddress, idcity) values(6,2);
+insert into address_city(idaddress, idcity) values(7,2);
+insert into address_city(idaddress, idcity) values(1,3);
+insert into address_city(idaddress, idcity) values(2,3);
+insert into category(name) values('Exibitions');
+insert into category(name) values('Concerts');
+insert into category(name) values('Promotions');
+insert into category(name) values('Seminars');
+insert into category(name) values('Parties');
+insert into category(name) values('Conferences');
+insert into category(name) values('Workshops');
+insert into category(name) values('Sports');
+insert into category(name) values('Ethno');
+
+insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+values('Banja Luka Half Marathon','2020-5-17 09:00:00', 8,180, 'Banja Luka Running Club', 'Best Half Marathon in the country', 1, 1);
+insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+values('Design Thinking Training', '2020-1-29 17:00:00', 7, 120, 'Unichrone', 'Course for better understanding the phases of Design Thinking', 2, 1);
+insert into event(name, scheduledOn, idcategory, duration, description, idaddress, idcity)
+values('The Work of Byron Katie', '2020-1-18 11:30:00', 7, 120, 'Come and see how to change your world!', 3, 1);
+insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+values('NOW WE DEEP ShowCase 002 w/ Vietmens', '2020-1-31 23:30:00', 5, 300, 'K.S.E.T. Pub', 'Fresh music energy based on House music', 4, 1);
+insert into event(name, scheduledOn, idcategory, organizers, idaddress, idcity)
+values('Banja Luka Dog Show 2020', '2020-3-28 10:00:00', 1, 'Jelena Dogs Shows', 5, 1);
+insert into event(name, scheduledOn, idcategory, organizers, idaddress, idcity)
+values('10th Grand Prix Banja Luka', '2020-3-26 00:00:00', 8, 'Grand Prix Banja Luka', 6, 1);
+insert into event(name, scheduledOn, idcategory, organizers, idaddress, idcity)
+values('Svetosavska Academy', '2020-1-27 20:00:00', 2, 'SPD "Jedinstvo"', 7, 1);
+insert into event(name, scheduledOn, idcategory, organizers, description, idaddress, idcity)
+values('Winter spinning-bee', '2020-2-15 10:00:00', 9, 'Local community Gornja Piskavica, BL Tourist board', 'The event with the aim to retain life in the countryside and to promote rural values and rural products.', 3, 1);
+insert into event(name, scheduledOn, idcategory, organizers, idaddress, idcity)
+values('The days of Vlado Milosevic', '2020-4-7 19:00:00', 2, 'Art Academy Banja Luka', 2, 1);
+insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+values('Night of museums', '2020-5-1 21:00:00', 1, 90, 'Museum of Contemporary Arts of RS', 'Museum of Contemporary Art of RS presents art', 5, 1);
+insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+values('Cevap Fest', '2020-5-30 08:00:00', 1, 360, 'TOBL and City of Banja Luka', 'The best gastro exibition in RS', 1, 1);
+insert into event(name, scheduledOn, idcategory, organizers, idaddress, idcity)
+ values('International sculptor colony "Krupa"', '2020-6-29 16:30:00', 1, 'International Center Krupa', 8, 1);
+ insert into event(name, scheduledOn, idcategory, organizers,idaddress, idcity)
+ values('Kastel Rock Fest', '2020-6-30 22:00:00', 5, 'Front Stage', 1, 1);
+ insert into event(name, scheduledOn, idcategory, duration, organizers, idaddress, idcity)
+ values('Summer at Vrbas', '2020-7-7 09:00:00', 8, 180, 'Banja Luka Tourism Board', 2, 1);
+ insert into event(name, scheduledOn, idcategory, description, idaddress, idcity)
+ values('Nektar Fresh Wave Festival', '2020-8-10 22:15:00', 5, 'Electronic music', 3, 1);
+ insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+ values('Zbor Kocic', '2020-8-29 10:00:00', 9, 480, 'Homeland society Zmijanje', 'Both culture and fun in one place', 4, 1);
+ insert into event(name, scheduledOn, idcategory, duration, organizers, idaddress, idcity)
+ values('Festival of cultural creativity of minorities', '2020-9-10 21:00:00', 9, 150, 'Association of National Minorities RS', 5, 1);
+ insert into event(name, scheduledOn, idcategory, duration, organizers, idaddress, idcity)
+ values('Banja Luka choral meeting', '2020-10-10 19:00:00', 9, 75, 'Serbian Singing Society „Jedinstvo“', 6, 1);
+ insert into event(name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+ values("International and ortodox New Year's Eve", '2020-12-31 21:00:00', 2, 300, 'Cultural Center Banski Dvor', "Let's celebrate together with great music!", 1, 1);
+ insert into event( name, scheduledOn, idcategory, duration, organizers, description, idaddress, idcity)
+ values('Techno party in Fabrique', '2020-1-25 23:00:00', 5, 240, 'Club Fabrique', 'Quite large place with techno in the late hours!', 3, 1);
+ insert into event(name, scheduledOn, idcategory, duration, organizers, idaddress, idcity)
+ values('Shut Down Rave Party', '2020-4-20 22:30:00', 5, 225, 'Jelen PUB', 6, 1);
+ 
+ insert into question(content) values('Which Williams sister has won more Grand Slam titles?');
+insert into answer(idquestion,content,correct) values(1,'Venus' ,0);
+insert into answer(idquestion,content,correct) values(1,'Serena' ,1);
+insert into answer(idquestion,content,correct) values(1,'Yetunde Price' , 0);
+insert into question(content) values('In which year did the demolition of the Berlin Wall begin?');
+insert into answer(idquestion,content,correct) values(2,'1987' ,0);
+insert into answer(idquestion,content,correct) values(2,'1999' ,0);
+insert into answer(idquestion,content,correct) values(2,'1989' , 1);
+insert into question(content) values('Which book was published in London on April 25th, 1719?');
+insert into answer(idquestion,content,correct) values(3,'War And Peace' ,0);
+insert into answer(idquestion,content,correct) values(3,'The Stranger' ,0);
+insert into answer(idquestion,content,correct) values(3,'Robinson Crusoe' , 1);
+insert into question(content) values('Which racer holds the record for the most Grand Prix wins?');
+insert into answer(idquestion,content,correct) values(4,'Jim Clark' ,0);
+insert into answer(idquestion,content,correct) values(4,'Michael Schumacher' ,1);
+insert into answer(idquestion,content,correct) values(4,'Ayrton Senna' , 0);
+insert into question(content) values("Which of these events is not part of a decathlon?");
+insert into answer(idquestion,content,correct) values(5,'Hammer throw' ,1);
+insert into answer(idquestion,content,correct) values(5,'100-meter sprint' ,0);
+insert into answer(idquestion,content,correct) values(5,'High jump' , 0);
+insert into question(content) values("Who was the first woman to win a Nobel Prize (in 1903)?");
+insert into answer(idquestion,content,correct) values(6,'Marie Curie' ,1);
+insert into answer(idquestion,content,correct) values(6,'Bertha von Suttner' ,0);
+insert into answer(idquestion,content,correct) values(6,'Sigrid Undset' , 0);
+insert into question(content) values('In what year was the Corvette introduced?');
+insert into answer(idquestion,content,correct) values(7,'1990' ,0);
+insert into answer(idquestion,content,correct) values(7,'1953' ,1);
+insert into answer(idquestion,content,correct) values(7,'1924' , 0);
+insert into question(content) values('In what year was the first episode of South Park aired?');
+insert into answer(idquestion,content,correct) values(8,'2001' ,0);
+insert into answer(idquestion,content,correct) values(8,'1992' , 0);
+insert into answer(idquestion,content,correct) values(8,'1997' , 1);
+insert into question(content) values("What event changed the course of political history in the US?");
+insert into answer(idquestion,content,correct) values(9,'Signing of the Civil Rights Act' ,0);
+insert into answer(idquestion,content,correct) values(9,'Ceremony for first commercial airline flight' , 0);
+insert into answer(idquestion,content,correct) values(9,'Kennedy assassination' , 1);
+insert into question(content) values("What 1911 event was the deadliest industrial accident in NY History?");
+insert into answer(idquestion,content,correct) values(10,'Nixon Nitration Works Disaster' ,0);
+insert into answer(idquestion,content,correct) values(10,'Port Chicago Disaster' , 0);
+insert into answer(idquestion,content,correct) values(10,'Triangle shirtwaist factory fire' , 1);
+insert into question(content) values('Which Civil Rights leader made history with his speech in Washington?');
+insert into answer(idquestion,content,correct) values(11,'Malcom X' ,0);
+insert into answer(idquestion,content,correct) values(11,'Martin Luther King' , 1);
+insert into answer(idquestion,content,correct) values(11,'Fred Shuttlesworth' , 0);
+insert into question(content) values('Which event triggered the beginning of World War I?');
+insert into answer(idquestion,content,correct) values(12,'Assassination of Franz Ferdinand' ,1);
+insert into answer(idquestion,content,correct) values(12,'Germany invades Poland' , 0);
+insert into answer(idquestion,content,correct) values(12,'US becomes an isolationist country' , 0);
+insert into question(content) values('Which space shuttle broke apart in the sky in 1986 due to faulty O-rings?');
+insert into answer(idquestion,content,correct) values(13,'Intrepid' ,0);
+insert into answer(idquestion,content,correct) values(13,'Challenger' , 1);
+insert into answer(idquestion,content,correct) values(13,'Apollo 12' , 0);
+insert into question(content) values('What 2001 event forever changed life in the United States?');
+insert into answer(idquestion,content,correct) values(14,'September 11 terrorist attacks' ,1);
+insert into answer(idquestion,content,correct) values(14,'Oklahoma City Bombing' , 0);
+insert into answer(idquestion,content,correct) values(14,'David Koresh standoff' , 0);
+insert into question(content) values('What did the 18th amendment do?');
+insert into answer(idquestion,content,correct) values(15,'Gave women the right to vote' ,0);
+insert into answer(idquestion,content,correct) values(15,'Required all citizens to pay property taxes' , 0);
+insert into answer(idquestion,content,correct) values(15,'Marked the start of prohibition' , 1);
+insert into question(content) values("Which 1969 music festival was held on Max Yasgur's dairy farm?");
+insert into answer(idquestion,content,correct) values(16,'Monterey Pop festival' ,0);
+insert into answer(idquestion,content,correct) values(16,'Newport folk festival' ,0);
+insert into answer(idquestion,content,correct) values(16,'Woodstock music festival' , 1);
+insert into question(content) values('What event marked the end of the Victorian Era?');
+insert into answer(idquestion,content,correct) values(17,'India gains independence' ,0);
+insert into answer(idquestion,content,correct) values(17,'Princess Elizabeth ascends to the throne' ,0);
+insert into answer(idquestion,content,correct) values(17,"Queen Victoria's funeral procession" , 1);
+insert into question(content) values('Which event pulled the United States into WWII?');
+insert into answer(idquestion,content,correct) values(18,'Attack on Pearl Harbor' ,1);
+insert into answer(idquestion,content,correct) values(18,'Sinking of RMS Lusitania' ,0);
+insert into answer(idquestion,content,correct) values(18,'Sinking of the SS Athenia' , 0);
+insert into question(content) values('What catastrophic Irish event led to the deaths of 1 million people?');
+insert into answer(idquestion,content,correct) values(19,'The Troubles' ,0);
+insert into answer(idquestion,content,correct) values(19,'Irish Potato Famine' ,1);
+insert into answer(idquestion,content,correct) values(19,'Irish War of Independence' , 0);
+insert into question(content) values("Who is credited with inventing and flying the world's first successful airplane?");
+insert into answer(idquestion,content,correct) values(20,'Charles Lindbergh' ,0);
+insert into answer(idquestion,content,correct) values(20,'The Wright Brothers' ,1);
+insert into answer(idquestion,content,correct) values(20,'Amelia Earhart' , 0);
+insert into question(content) values('In what year did the Beatles first arrive in the US?');
+insert into answer(idquestion,content,correct) values(21,'1958' ,0);
+insert into answer(idquestion,content,correct) values(21,'1964' ,1);
+insert into answer(idquestion,content,correct) values(21,'1967' , 0);
+insert into question(content) values('What music festival is taking place in Belgium (Boom)?');
+insert into answer(idquestion,content,correct) values(22,'Coachella' ,0);
+insert into answer(idquestion,content,correct) values(22,'Tomorrowland' ,1);
+insert into answer(idquestion,content,correct) values(22,'Ultra' , 0);
+insert into question(content) values('When is the International Day of Happiness?');
+insert into answer(idquestion,content,correct) values(23,'March 30' ,1);
+insert into answer(idquestion,content,correct) values(23,'April 30' ,0);
+insert into answer(idquestion,content,correct) values(23,'May 30' , 0);
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+
+
+
+
+
