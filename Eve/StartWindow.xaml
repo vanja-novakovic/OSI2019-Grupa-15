@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eve"
         mc:Ignorable="d"
-        Title="StartWindow" Height="500" Width="900" WindowStartupLocation="CenterScreen "  ContentRendered="Window_ContentRendered">
+        Title="StartWindow" Height="600" Width="900" WindowStartupLocation="CenterScreen "  ContentRendered="Window_ContentRendered">
     <Window.Background>
         <ImageBrush ImageSource="Images/StartImage.png" Stretch="Fill"/>
     </Window.Background>

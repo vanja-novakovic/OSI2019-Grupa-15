@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eve.Events"
         mc:Ignorable="d"
-                    Title="MainWindow" Height="630" Width="600" >
+                    Title="MainWindow" Height="700" Width="650" >
     <Border CornerRadius="10" Background="#1f262a">
         <StackPanel>
 

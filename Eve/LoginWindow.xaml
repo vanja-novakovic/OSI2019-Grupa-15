@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eve"
         mc:Ignorable="d"
-        Title="EvE" Height="650" Width="650" FontSize = "14" WindowStartupLocation="CenterScreen" >
+        Title="EvE" Height="600" Width="900" FontSize = "14" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="Images/Image.jpg" Stretch="Fill"/>
     </Window.Background>
-    <Border Background="#1f262a" CornerRadius="10" Margin="100 80 100 160">
+    <Border Background="#1f262a" CornerRadius="10" Margin="225 80 225 80">
         <StackPanel Margin="30">
             <TextBlock Text="Login" Foreground="#fff" HorizontalAlignment="Center" FontSize="20"/>
             <Separator Margin="0 5 0 5"></Separator>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eve.Quiz"
         mc:Ignorable="d"
-        Title="Current question" Height="500" Width="900" WindowStartupLocation="CenterScreen">
+        Title="Current question" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="QuizImages/Image.jpg" Stretch="Fill"/>
     </Window.Background>
