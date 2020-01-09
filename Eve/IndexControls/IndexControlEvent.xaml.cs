@@ -147,8 +147,9 @@ namespace Eve.IndexControls
         {
             EventFilter eventFilter = FilterComboBox.SelectedItem == null ? EventFilter.NONE : (EventFilter)(FilterComboBox.SelectedItem);
             (string orderBy, string order) = GetOrder();
+            int? idCategory = eventFilter == EventFilter.CATEGORY ? DataGridControlElementEvent.IdCategory : null;
 
-            await DataGridControlElementEvent.Refresh(eventFilter, null, orderBy, order);
+            await DataGridControlElementEvent.Refresh(eventFilter, idCategory, orderBy, order);
 
         }
 

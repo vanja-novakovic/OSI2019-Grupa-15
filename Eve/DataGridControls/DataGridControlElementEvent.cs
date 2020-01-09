@@ -104,7 +104,10 @@ namespace Eve.DataGridControls
         {
             Filter = filter;
             OrderByAttribute = orderByAttribute;
-            IdCategory = categoryId;
+            if (filter == EventFilter.CATEGORY && categoryId != null)
+                IdCategory = categoryId;
+            else if (filter != EventFilter.CATEGORY)
+                IdCategory = null;
             OrderDirection = orderDirection;
             TotalNumberOfItems = await GetNumberOfItems(Filter, IdCategory);
             ListForPage = await GetData(FIRST_NUMBER, NumberOfRecordsPerPage, filter, categoryId, orderByAttribute, orderDirection);

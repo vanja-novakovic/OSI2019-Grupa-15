@@ -128,7 +128,8 @@ namespace Core.Services
             };
             if (filter == EventFilter.CATEGORY)
             {
-                tmp.IdCategory = idCategory.Value;
+                if (idCategory.HasValue)
+                    tmp.IdCategory = idCategory.Value;
                 DbCommand<Event> selectCommand = new SelectWithRangeAndFilterCommand<Event>(offset, limit, orderByAttribute ?? "Name", new string[] { "IdCity", "IdCategory" }, tmp, order);
                 return await ServiceHelper<Event>.ExecuteSelectCommand(selectCommand);
             }
