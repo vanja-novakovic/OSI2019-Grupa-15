@@ -54,6 +54,7 @@
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\DbUpdateException.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Services\Interfaces\IAddressCityService.cs" />

@@ -16,14 +16,21 @@ namespace Core.Services
 
         public async Task<DbStatus> Add(Event entity)
         {
-            string[] uniqueAtributes = new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" };
-            Event existingEvent = await GetByUniqueIdentifiers(uniqueAtributes, entity);
-            if (existingEvent != null)
-                return DbStatus.EXISTS;
+            try
+            {
+                string[] uniqueAtributes = new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" };
+                Event existingEvent = await GetByUniqueIdentifiers(uniqueAtributes, entity);
+                if (existingEvent != null)
+                    return DbStatus.EXISTS;
 
-            DbCommand<Event> insertCommand = new InsertCommand<Event>();
-            DbStatus statusOfExecution = await ServiceHelper<Event>.ExecuteCRUDCommand(insertCommand, entity);
-            return statusOfExecution;
+                DbCommand<Event> insertCommand = new InsertCommand<Event>();
+                DbStatus statusOfExecution = await ServiceHelper<Event>.ExecuteCRUDCommand(insertCommand, entity);
+                return statusOfExecution;
+            }
+            catch (Exception)
+            {
+                return DbStatus.DATABASE_ERROR;
+            }
         }
 
         public async Task<DbStatus> Delete(Event entity)
@@ -106,17 +113,24 @@ namespace Core.Services
 
         public async Task<DbStatus> Update(Event entity)
         {
-            Event existingEvent = await GetByPrimaryKey(entity);
-            if (existingEvent == null)
-                return DbStatus.NOT_FOUND;
+            try
+            {
+                Event existingEvent = await GetByPrimaryKey(entity);
+                if (existingEvent == null)
+                    return DbStatus.NOT_FOUND;
 
-            Event eventWithSameUniqueAtributes = await GetByUniqueIdentifiers(new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" }, entity);
-            if (eventWithSameUniqueAtributes != null)
-                return DbStatus.EXISTS;
+                Event eventWithSameUniqueAtributes = await GetByUniqueIdentifiers(new string[] { "Name", "ScheduledOn", "IdAddress", "IdCity" }, entity);
+                if (eventWithSameUniqueAtributes != null)
+                    return DbStatus.EXISTS;
 
-            DbCommand<Event> updateCommand = new UpdateCommand<Event>();
-            DbStatus status = await ServiceHelper<Event>.ExecuteCRUDCommand(updateCommand, entity);
-            return status;
+                DbCommand<Event> updateCommand = new UpdateCommand<Event>();
+                DbStatus status = await ServiceHelper<Event>.ExecuteCRUDCommand(updateCommand, entity);
+                return status;
+            }
+            catch (Exception)
+            {
+                return DbStatus.DATABASE_ERROR;
+            }
         }
 
         public async Task<List<Event>> GetRangeInOneCityWithFilter(int offset, int limit, string cityName, EventFilter filter, int? idCategory = null, string orderByAttribute = null, string order = "asc")

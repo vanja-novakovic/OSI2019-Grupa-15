@@ -73,33 +73,40 @@ namespace Eve.Events
         }
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            DateTime scheduledOn = (DateTime)Date.SelectedDate;
-            DateTime time = DateTime.ParseExact(Time.Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-            scheduledOn = scheduledOn.Add(time.TimeOfDay);
-
-            int idCity = (await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = Shared.Config.Properties.Default.City })).IdCity;
-            Event @event = new Event()
+            try
             {
-                IdEvent = eventModel.IdEvent,
-                IdCategory = ((CategoryViewModel)Category.SelectedItem).IdCategory,
-                IdAddress = ((AddressViewModel)Address.SelectedItem).IdAddress,
-                Name = Name.Text,
-                Description = Description.Text,
-                ScheduledOn = scheduledOn,
-                Organizers = Organizers.Text,
-                IdCity = idCity,
-                Duration = int.Parse(Duration.Text)
-            };
+                DateTime scheduledOn = (DateTime)Date.SelectedDate;
+                DateTime time = DateTime.ParseExact(Time.Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                scheduledOn = scheduledOn.Add(time.TimeOfDay);
 
-            DbStatus status = await eventService.Update(@event);
-            if (status == DbStatus.NOT_FOUND)
-                ShowMessage("Not found!", "Error");
-            else
-            {
-                ShowMessage("Successfully updated!", "Success");
-                this.Close();
+                int idCity = (await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = Shared.Config.Properties.Default.City })).IdCity;
+                Event @event = new Event()
+                {
+                    IdEvent = eventModel.IdEvent,
+                    IdCategory = ((CategoryViewModel)Category.SelectedItem).IdCategory,
+                    IdAddress = ((AddressViewModel)Address.SelectedItem).IdAddress,
+                    Name = Name.Text,
+                    Description = Description.Text,
+                    ScheduledOn = scheduledOn,
+                    Organizers = Organizers.Text,
+                    IdCity = idCity,
+                    Duration = int.Parse(Duration.Text)
+                };
+
+                DbStatus status = await eventService.Update(@event);
+                if (status == DbStatus.NOT_FOUND)
+                    ShowMessage("Not found!", "Error");
+                else
+                {
+                    ShowMessage("Successfully updated!", "Success");
+                    this.Close();
+                }
+
             }
-
+            catch (System.FormatException)
+            {
+                ShowMessage("Format is incorrect! ", "Error");
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -109,9 +116,6 @@ namespace Eve.Events
         private void ShowMessage(string message, string caption)
         {
             MessageBox.Show(message, caption, MessageBoxButton.OK);
-            Name.Name = string.Empty;
-            Address.SelectedItem = null;
-            Time.Text = string.Empty;
         }
     }
 }

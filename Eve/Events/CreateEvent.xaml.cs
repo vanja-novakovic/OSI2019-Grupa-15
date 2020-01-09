@@ -6,17 +6,7 @@ using Eve.AutoMapper;
 using Eve.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Eve.Events
 {
@@ -50,32 +40,43 @@ namespace Eve.Events
         }
         private async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            DateTime scheduledOn = (DateTime)Date.SelectedDate;
-            DateTime time = DateTime.ParseExact(Time.Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-            scheduledOn = scheduledOn.Add(time.TimeOfDay);
-            
-            int idCity = (await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = Shared.Config.Properties.Default.City })).IdCity;
-            Event @event = new Event()
+            try
             {
-                IdCategory = ((CategoryViewModel)Category.SelectedItem).IdCategory,
-                IdAddress = ((AddressViewModel)Address.SelectedItem).IdAddress,
-                Name = Name.Text,
-                Description = Description.Text,
-                ScheduledOn = scheduledOn,
-                Organizers = Organizers.Text,
-                IdCity = idCity,
-                Duration = int.Parse(Duration.Text)
-        };
+                if (Validate() == true)
+                {
+                    DateTime scheduledOn = (DateTime)Date.SelectedDate;
+                    DateTime time = DateTime.ParseExact(Time.Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                    scheduledOn = scheduledOn.Add(time.TimeOfDay);
 
-            DbStatus status = await eventService.Add(@event);
-            if (status == DbStatus.EXISTS)
-                ShowMessage("Already exists!", "Error");
-            else
-            {
-                ShowMessage("Successfully added!", "Success");
-                this.Close();
+                    int idCity = (await cityService.GetByUniqueIdentifiers(new string[] { "Name" }, new City() { Name = Shared.Config.Properties.Default.City })).IdCity;
+                    Event @event = new Event()
+                    {
+                        IdCategory = ((CategoryViewModel)Category.SelectedItem).IdCategory,
+                        IdAddress = ((AddressViewModel)Address.SelectedItem).IdAddress,
+                        Name = Name.Text,
+                        Description = Description.Text,
+                        ScheduledOn = scheduledOn,
+                        Organizers = Organizers.Text,
+                        IdCity = idCity,
+                        Duration = int.Parse(Duration.Text)
+                    };
+
+                    DbStatus status = await eventService.Add(@event);
+                    if (status == DbStatus.EXISTS)
+                        ShowMessage("Already exists!", "Error");
+                    else if (status == DbStatus.DATABASE_ERROR)
+                        ShowMessage("Item was not added! ", "Error");
+                    else
+                    {
+                        ShowMessage("Successfully added!", "Success");
+                        this.Close();
+                    }
+                }
             }
-
+            catch (FormatException)
+            {
+                MessageBox.Show("Incorrect format! ", "Error");
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -88,6 +89,16 @@ namespace Eve.Events
             Name.Name = string.Empty;
             Address.SelectedItem = null;
             Time.Text = string.Empty;
+        }
+
+        private bool Validate()
+        {
+            if (Date.SelectedDate == null || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Time.Text) || Address.SelectedItem == null || Category.SelectedItem == null)
+            {
+                MessageBox.Show("Mandatory fields are missing! ", "Error", MessageBoxButton.OK);
+                return false;
+            }
+            return true;
         }
     }
 }
